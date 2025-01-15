@@ -1,11 +1,11 @@
 """
- * Initial code for Assignment
+ * Initial code for Assignment 1, 2
  * file : run.py
  * Programming Language Principles
  * Author: Võ Tiến
  * Link FB : https://www.facebook.com/Shiba.Vo.Tien
  * Link Group : https://www.facebook.com/groups/khmt.ktmt.cse.bku
- * Date: 02.01.2025
+ * Date: 07.01.2025
  
  * install extension ANTLR4 grammar syntax support, Better Comments
  * run code
@@ -14,8 +14,6 @@
     python3 run.py test LexerSuite [test_case]    # Run LexerSuite tests (test_case is optional)
     python3 run.py test ParserSuite [test_case]   # Run ParserSuite tests (test_case is optional)
     python3 run.py test ASTGenSuite [test_case]   # Run ASTGenSuite tests (test_case is optional)
-    python3 run.py test CheckerSuite [test_case]  # Run CheckerSuite tests (test_case is optional)
-    python3 run.py test CodeGenSuite [test_case]  # Run CodeGenSuite tests (test_case is optional)
 
     Notes:
     - Replace [test_case] with the specific test you want to run, e.g., test_1.
@@ -24,21 +22,21 @@
 
 import sys
 import os
-import glob
 import subprocess
 import unittest
 import shutil
-import platform
 from antlr4 import *
 from colorama import Fore, Style, init
-from io import StringIO
 
 for path in ['./test/', './test/Lexer/', './test/Parser/', './test/ASTGen/',  './test/Check/', './test/CodeGen/',  './main/']:
     sys.path.append(path)
-ANTLR_JAR = os.environ.get('ANTLR_JAR')
+
+# load_dotenv()
+ANTLR_JAR = os.getenv('ANTLR_JAR', "antlr-4.9.2-complete.jar")
 TARGET_DIR = 'target/main'
 GENERATE_DIR = 'main/parser'
 ARGV = ""
+
 def main(argv):
 
     if len(argv) < 1:
@@ -80,11 +78,10 @@ def main(argv):
                         print(f'Failed to delete {file_path}. Reason: {e}') 
         
         print("Clear full file input/ouput in test")
-             
     elif argv[0] == 'test':
         if not os.path.isdir(TARGET_DIR):
             subprocess.run(["java", "-jar", ANTLR_JAR, "-o", "target",
-                        "-no-listener", "-visitor", "main/MT22.g4"])
+                       "-no-listener", "-visitor", "main/VoTien.g4"])
         if not (TARGET_DIR) in sys.path:
             sys.path.append(TARGET_DIR)
             sys.path.append("target")
@@ -100,12 +97,6 @@ def main(argv):
             elif argv[1] == 'ASTGenSuite':
                 from ASTGenSuite import ASTGenSuite
                 getAndTest(argv[1], ASTGenSuite)
-            elif argv[1] == 'CheckerSuite':
-                from CheckSuite import CheckSuite
-                getAndTest(argv[1], CheckSuite)
-            elif argv[1] == 'CodeGenSuite':
-                from CodeGenSuite import CheckCodeGenSuite
-                getAndTest(argv[1], CheckCodeGenSuite)
             else:
                 printUsage()
         else:
@@ -118,12 +109,6 @@ def main(argv):
             elif argv[1] == 'ASTGenSuite':
                 from ASTGenSuite import ASTGenSuite
                 getAndTestFucntion(argv[1] + " - " + argv[2], ASTGenSuite, argv[2])
-            elif argv[1] == 'CheckerSuite':
-                from CheckSuite import CheckSuite
-                getAndTestFucntion(argv[1] + " - " + argv[2], CheckSuite, argv[2])
-            elif argv[1] == 'CodeGenSuite':
-                from CodeGenSuite import CheckCodeGenSuite
-                getAndTestFucntion(argv[1] + " - " + argv[2], CheckCodeGenSuite, argv[2])
             else:
                 printUsage()
     else:
@@ -201,8 +186,6 @@ def printUsage():
     print("  python3 run.py test LexerSuite [test_case]    # Run LexerSuite tests (test_case is optional)")
     print("  python3 run.py test ParserSuite [test_case]   # Run ParserSuite tests (test_case is optional)")
     print("  python3 run.py test ASTGenSuite [test_case]   # Run ASTGenSuite tests (test_case is optional)")
-    print("  python3 run.py test CheckerSuite [test_case]  # Run CheckerSuite tests (test_case is optional)")
-    print("  python3 run.py test CodeGenSuite [test_case]  # Run CodeGenSuite tests (test_case is optional)")
     print()
     print("Notes:")
     print("  - Replace [test_case] with the specific test you want to run, e.g., test_1.")

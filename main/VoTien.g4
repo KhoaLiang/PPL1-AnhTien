@@ -8,43 +8,31 @@ options {
 	language = Python3;
 }
 
-//! -------------------------- Lexical structure ----------------------- // TODO KeyWord and
-// Operators and Separators
-INT: 'int';
-ADD: '+';
-ASSIGNI: '=';
-PRINT: 'print';
-LP: '(';
-RP: ')';
-COMCOMMA: ';';
+//! -------------------------- Lexical structure ----------------------- // TODO KeyWord
+//TODO KeyWord
+
+//TODO Operators
+
+//TODO Separators
 
 // TODO Identifiers
-ID: [a-zA-Z_][a-zA-Z0-9_]*;
+ID: (.)((.)(.))*;
 
-// TODO Literal 
-INT_LIT: [0-9]+;
+//TODO Literal
 
-// TODO SKIP
-COMMENTS: '##' ~[\n]* -> skip; // Comments
-WS: [ \t\r\f\b\n]+ -> skip; // skip spaces, tabs
+//TODO SKIP
 
 // TODO ERROR
 ERROR_CHAR: . {raise ErrorToken(self.text)};
+UNCLOSE_STRING: 
+ILLIGAL ESCAPE:
 
 //!  -------------------------- end Lexical structure ------------------- //
 
 // //! --------------------------  parser structure ----------------------- //
 
 // declared
-program: statement+ EOF;
+program: (ID | ERROR_STRING*) EOF;
 
-//  Statements
-statement: (declaration_statement | call_statement);
-declaration_statement: INT ID ASSIGNI expression COMCOMMA;
-call_statement: PRINT LP expression RP COMCOMMA;
-
-// Expression
-expression: expression1 ADD expression | expression1;
-expression1: ID | INT_LIT;
 
 // //! -------------------------- end  parser structure ----------------------- //
