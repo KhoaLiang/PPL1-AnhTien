@@ -1,3 +1,0 @@
-
-            "VOTIEN 	 \b \f \r \n \t \" \\"
-        ,<EOF>

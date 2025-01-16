@@ -10,6 +10,19 @@ options {
 
 //! -------------------------- Lexical structure ----------------------- // TODO KeyWord
 //TODO KeyWord
+T: 'T';
+CONTINUE: 'continue';
+F: 'F';
+IF: 'if'; 
+ELSE: 'else';
+FOR: 'for';
+BOOL: 'bool';
+NUMBER: 'number';
+RETURN: 'return';
+STRING: 'string';
+FUNC: 'func'; 
+ENDFUNC: 'endfunc';
+CALL: 'call';
 
 //TODO Operators
 
@@ -26,6 +39,8 @@ ID: (.)((.)(.))*;
 ERROR_CHAR: . {raise ErrorToken(self.text)};
 UNCLOSE_STRING: 
 ILLIGAL ESCAPE:
+
+//exercise
 
 //!  -------------------------- end Lexical structure ------------------- //
 
