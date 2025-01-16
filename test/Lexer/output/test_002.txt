@@ -1,1 +1,1 @@
-Error Token continue F if else for bool number return string func endfunc call
++,-,*,/,%,.,<=,>=,==,<EOF>

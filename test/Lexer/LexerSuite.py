@@ -15,111 +15,59 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from TestUtils import TestLexer
 
 class LexerSuite(unittest.TestCase):
-
-    ## Keywords 
+    
     def test_001(self):
-        self.assertTrue(TestLexer.test("T","T,<EOF>", inspect.stack()[0].function))
-
-    ## Keywords
+        """Keywords"""
+        self.assertTrue(TestLexer.test("if else for return func","if,else,for,return,func,<EOF>", inspect.stack()[0].function))
     def test_002(self):
-        self.assertTrue(TestLexer.test("continue F if else for bool number return string func endfunc call","continue,F,if,else,for,bool,number,return,string,func,endfunc,call,<EOF>", inspect.stack()[0].function))
+        """Operators"""
+        self.assertTrue(TestLexer.test("+-*/%.<=>===","+,-,*,/,%,.,<=,>=,==,<EOF>", inspect.stack()[0].function))
+        
+    def test_003(self):
+        """Separators"""
+        self.assertTrue(TestLexer.test("[]","[,],<EOF>", inspect.stack()[0].function))
+        
+    def test_004(self):
+        """Identifiers"""
+        self.assertTrue(TestLexer.test("_VOTien","_VOTien,<EOF>", inspect.stack()[0].function))
+        
+    def test_005(self):
+        """Literals INT"""
+        self.assertTrue(TestLexer.test("12","12,<EOF>", inspect.stack()[0].function))
+        
+    def test_006(self):
+        """Literals INT 16*1 + 1 = 17"""
+        self.assertTrue(TestLexer.test("0x11","17,<EOF>", inspect.stack()[0].function))
+    
+    def test_007(self):
+        """Literals FLOAT"""
+        self.assertTrue(TestLexer.test("12.e-8","12.e-8,<EOF>", inspect.stack()[0].function))
+    
+    def test_008(self):
+        """Literals String"""
+        self.assertTrue(TestLexer.test(""" "VOTIEN \\r" ""","VOTIEN \\r,<EOF>", inspect.stack()[0].function))
+        
+    def test_009(self):
+        """COMEMENTS"""
+        self.assertTrue(TestLexer.test("// VOTIEN\n","<EOF>", inspect.stack()[0].function))
 
-#     ## Operators
-#     def test_003(self):
-#         self.assertTrue(TestLexer.test("+-*=><**#<-","+,-,*,=,>,<,**,#,<-,<EOF>", inspect.stack()[0].function))
+    def test_010(self):
+        """COMEMENTS"""
+        self.assertTrue(TestLexer.test("/* VO /* /*TIEN*/ */ SHIBA","SHIBA,<EOF>", inspect.stack()[0].function))
 
-#     ## Separators
-#     def test_004(self):
-#         self.assertTrue(TestLexer.test("[]{}(),;:<>","[,],{,},(,),,,;,:,<,>,<EOF>", inspect.stack()[0].function))
+    def test_011(self):
+        """ERROR_CHAR"""
+        self.assertTrue(TestLexer.test("^","ErrorToken ^", inspect.stack()[0].function))
 
-#     ## Identifiers
-#     def test_005(self):
-#         self.assertTrue(TestLexer.test("_1 _b _A_ b A21","_1,_b,_A_,b,A21,<EOF>", inspect.stack()[0].function))
+    def test_012(self):
+        """UNCLOSE_STRING"""
+        self.assertTrue(TestLexer.test(""" "VOTIEN\n" ""","Unclosed string: VOTIEN", inspect.stack()[0].function))
+    
+    def test_013(self):
+        """ILLEGAL_ESCAPE"""
+        self.assertTrue(TestLexer.test(""" "VOTIEN\\f" ""","Illegal escape in string: VOTIEN\\f", inspect.stack()[0].function))
+        
+    #!!! 87 test yêu cầu code chấm sau
 
-#     ## Identifiers
-#     def test_006(self):
-#         self.assertTrue(TestLexer.test("@_ @a @13","@_,@a,@13,<EOF>", inspect.stack()[0].function))
 
-#     ## Literal
-#     def test_007(self):
-#         self.assertTrue(TestLexer.test("10 10.2e-6 0 10e6","10,10.2e-6,0,10e6,<EOF>", inspect.stack()[0].function))
 
-#     ## Literal
-#     def test_008(self):
-#         self.assertTrue(TestLexer.test("""
-#             "VOTIEN"
-#         ""","VOTIEN,<EOF>", inspect.stack()[0].function))
-
-#     ## Literal
-#     def test_009(self):
-#         self.assertTrue(TestLexer.test("""
-#             "VOTIEN \t \\b \\f \\r \\n \\t \\\" \\\\"
-#         ""","VOTIEN \t \\b \\f \\r \\n \\t \\\" \\\\,<EOF>", inspect.stack()[0].function))
-
-#     ## Literal
-#     def test_010(self):
-#         self.assertTrue(TestLexer.test("""
-#             "'VOTIEN'"
-#         ""","'VOTIEN',<EOF>", inspect.stack()[0].function))
-
-#     ## Skip
-#     def test_010(self):
-#         self.assertTrue(TestLexer.test("""
-#             // VOTIEN 
-#             /* 
-#                 VOTIEN 
-#                 /* VOTIEN
-#                 // VOTIEN 
-#             */
-#             /* // VOTIEN */
-#             // VOTIEN 
-#         ""","<EOF>", inspect.stack()[0].function))
-
-#     ## ErrorToken
-#     def test_011(self):
-#         self.assertTrue(TestLexer.test("^","Error Token ^", inspect.stack()[0].function))
-
-#     ## ErrorToken
-#     def test_011(self):
-#         self.assertTrue(TestLexer.test("!","Error Token !", inspect.stack()[0].function))
-
-#     ## UNCLOSE_STRING
-#     def test_012(self):
-#         self.assertTrue(TestLexer.test("""
-#             "VOTIEN \n"
-#         ""","Unclosed String: VOTIEN ", inspect.stack()[0].function))
-
-#     ## UNCLOSE_STRING
-#     def test_013(self):
-#         self.assertTrue(TestLexer.test("""
-#             "VOTIEN \\n
-#             "
-#         ""","Unclosed String: VOTIEN \\n", inspect.stack()[0].function))
-
-#     ## ILLEGAL_ESCAPE
-#     def test_014(self):
-#         self.assertTrue(TestLexer.test("""
-#             "VOTIEN \\z
-#             "
-#         ""","Illegal Escape In String: VOTIEN \\z", inspect.stack()[0].function))
-
-#     ## 
-#     def test_015(self):
-#         self.assertTrue(TestLexer.test("""
-# number @array = <1, 0, -1>;
-# func number foo(a : number, b : bool):
-# a <- a + 1;
-# for (number c <- 2; > 3; #2) {
-# if c = 2 {
-# b <- [0]@array * 2 > a;
-# continue;
-# }
-# }
-# return a;
-# endfunc
-# func void main():
-# number a <- 0;
-# a = a ** call foo <- a, T;
-# call printNumber <- a;
-# endfunc
-#         ""","number,@array,=,<,1,,,0,,,-,1,>,;,func,number,foo,(,a,:,number,,,b,:,bool,),:,a,<-,a,+,1,;,for,(,number,c,<-,2,;,>,3,;,#,2,),{,if,c,=,2,{,b,<-,[,0,],@array,*,2,>,a,;,continue,;,},},return,a,;,endfunc,func,void,main,(,),:,number,a,<-,0,;,a,=,a,**,call,foo,<-,a,,,T,;,call,printNumber,<-,a,;,endfunc,<EOF>", inspect.stack()[0].function))
