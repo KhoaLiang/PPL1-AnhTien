@@ -87,19 +87,54 @@ SEMICOL: ';';
 ID: [a-zA-Z_][a-zA-Z0-9_]*;
 
 //TODO Literals 3.3.5 pdf
-INT_LIT: [0-9];
+//INT_LIT: [0-9];
+//INTERGER LITERAL
+DEC_INT: '0' | [1-9] [0-9]*;
+BIN_INT: '0' [bB] [01]+ {
+    self.text = str(int(self.text[2:], 2))
+};
+OCT_INT: '0' [oO] [0-7]+{
+    self.text = str(int(self.text[2:], 8))
+};
+HEX_INT: '0' [xX] [0-9a-fA-F]+{
+    self.text = str(int(self.text[2:], 16))
+};
+
+//FLOAT LITERAL
+FLOAT_LIT: DIGITS '.' (DIGITS)? OPT_EXP;
+fragment DIGIT: [0-9];
+fragment DIGITS: DIGIT+;
+fragment OPT_EXP: ([Ee] [+-]? DIGITS)?;
+
+//STRING LITERAL
+STRING_LIT: '"' STR_CHAR* '"' {
+    self.text = self.text[1:-1] 
+};
+fragment STR_CHAR: ~[\r\n\\"] | ESC_SEQ;
+fragment ESC_SEQ: '\\' [ntr"\\];
+fragment ESC_ILLEGAL: '\\' ~[ntr"\\];
+
 
 //TODO skip 3.1 and 3.2 pdf
 WS: [ \t\f\r\n]+ -> skip; // skip spaces, tabs 
+//SINGLE LINE COMMENT
+COMMENT: '//' ~[\r\n]* -> skip;
+
+//MULTI LINE COMMENT
+ML_COMMENT: '/*' (ML_COMMENT | .)*? '*/' -> skip;
 
 //TODO ERROR pdf BTL1 + lexererr.py
 ERROR_CHAR: . {raise ErrorToken(self.text)};
-UNCLOSE_STRING:
-	'U' {
-    raise UncloseString(self.text[1:-2])
+UNCLOSE_STRING: '"' STR_CHAR* ('\r\n' | '\n' | EOF) {
+    if(len(self.text) >= 2 and self.text[-1] == '\n' and self.text[-2] == '\r'):
+        raise UncloseString(self.text[1:-2])
+    elif (self.text[-1] == '\n'):
+        raise UncloseString(self.text[1:-1])
+    else:
+        raise UncloseString(self.text[1:])
 };
-ILLEGAL_ESCAPE:
-	'I' {
+
+ILLEGAL_ESCAPE: '"' STR_CHAR* ESC_ILLEGAL {
     raise IllegalEscape(self.text[1:])
 };
 

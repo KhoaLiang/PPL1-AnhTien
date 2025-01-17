@@ -1,1 +1,1 @@
-/,/,VOTIEN,<EOF>
+<EOF>

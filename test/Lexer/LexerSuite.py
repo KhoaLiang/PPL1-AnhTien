@@ -34,6 +34,12 @@ class LexerSuite(unittest.TestCase):
     def test_005(self):
         """Literals INT"""
         self.assertTrue(TestLexer.test("12","12,<EOF>", inspect.stack()[0].function))
+    def test_015(self):
+        """Literals BIN"""
+        self.assertTrue(TestLexer.test("0B1101","13,<EOF>", inspect.stack()[0].function))
+    def test_016(self):
+        """Literals OCT"""
+        self.assertTrue(TestLexer.test("0o17", "15,<EOF>", inspect.stack()[0].function))
         
     def test_006(self):
         """Literals INT 16*1 + 1 = 17"""
@@ -42,6 +48,9 @@ class LexerSuite(unittest.TestCase):
     def test_007(self):
         """Literals FLOAT"""
         self.assertTrue(TestLexer.test("12.e-8","12.e-8,<EOF>", inspect.stack()[0].function))
+    def test_017(self):
+        """Literals FLOAT NO DIGIT TEST"""
+        self.assertTrue(TestLexer.test("12.","12.,<EOF>", inspect.stack()[0].function))
     
     def test_008(self):
         """Literals String"""
