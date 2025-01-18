@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,63,10,2,0,7,0,1,0,4,0,4,8,0,11,0,12,0,5,1,0,1,0,1,0,0,0,1,0,
+        4,1,61,10,2,0,7,0,1,0,4,0,4,8,0,11,0,12,0,5,1,0,1,0,1,0,0,0,1,0,
         0,0,9,0,3,1,0,0,0,2,4,5,1,0,0,3,2,1,0,0,0,4,5,1,0,0,0,5,3,1,0,0,
         0,5,6,1,0,0,0,6,7,1,0,0,0,7,8,5,0,0,1,8,1,1,0,0,0,1,5
     ]
@@ -43,10 +43,9 @@ class MiniGoParser ( Parser ):
                       "RTE", "AND", "OR", "NOT", "ASSIGN", "ASSIGNADD", 
                       "ASSIGNSUB", "ASSIGNMUL", "ASSIGNDIV", "ASSIGNMOD", 
                       "POINTTO", "LPAREN", "RPAREN", "LBRACE", "RBRACE", 
-                      "LBRACK", "RBRACK", "COMMA", "SEMICOL", "ID", "DEC_INT", 
-                      "BIN_INT", "OCT_INT", "HEX_INT", "FLOAT_LIT", "STRING_LIT", 
-                      "WS", "COMMENT", "ML_COMMENT", "ERROR_CHAR", "UNCLOSE_STRING", 
-                      "ILLEGAL_ESCAPE" ]
+                      "LBRACK", "RBRACK", "COMMA", "SEMICOL", "ID", "INT_LIT", 
+                      "FLOAT_LIT", "STRING_LIT", "WS", "NEWLINE", "COMMENT", 
+                      "ML_COMMENT", "ERROR_CHAR", "UNCLOSE_STRING", "ILLEGAL_ESCAPE" ]
 
     RULE_program = 0
 
@@ -104,18 +103,16 @@ class MiniGoParser ( Parser ):
     COMMA=49
     SEMICOL=50
     ID=51
-    DEC_INT=52
-    BIN_INT=53
-    OCT_INT=54
-    HEX_INT=55
-    FLOAT_LIT=56
-    STRING_LIT=57
-    WS=58
-    COMMENT=59
-    ML_COMMENT=60
-    ERROR_CHAR=61
-    UNCLOSE_STRING=62
-    ILLEGAL_ESCAPE=63
+    INT_LIT=52
+    FLOAT_LIT=53
+    STRING_LIT=54
+    WS=55
+    NEWLINE=56
+    COMMENT=57
+    ML_COMMENT=58
+    ERROR_CHAR=59
+    UNCLOSE_STRING=60
+    ILLEGAL_ESCAPE=61
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)

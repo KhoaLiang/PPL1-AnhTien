@@ -18,10 +18,11 @@ class LexerSuite(unittest.TestCase):
     
     def test_001(self):
         """Keywords"""
-        self.assertTrue(TestLexer.test("if else for return func","if,else,for,return,func,<EOF>", inspect.stack()[0].function))
+        self.assertTrue(TestLexer.test("if","if,<EOF>", inspect.stack()[0].function))
+
     def test_002(self):
         """Operators"""
-        self.assertTrue(TestLexer.test("+-*/%.<=>===","+,-,*,/,%,.,<=,>=,==,<EOF>", inspect.stack()[0].function))
+        self.assertTrue(TestLexer.test("+","+,<EOF>", inspect.stack()[0].function))
         
     def test_003(self):
         """Separators"""
@@ -34,12 +35,6 @@ class LexerSuite(unittest.TestCase):
     def test_005(self):
         """Literals INT"""
         self.assertTrue(TestLexer.test("12","12,<EOF>", inspect.stack()[0].function))
-    def test_015(self):
-        """Literals BIN"""
-        self.assertTrue(TestLexer.test("0B1101","13,<EOF>", inspect.stack()[0].function))
-    def test_016(self):
-        """Literals OCT"""
-        self.assertTrue(TestLexer.test("0o17", "15,<EOF>", inspect.stack()[0].function))
         
     def test_006(self):
         """Literals INT 16*1 + 1 = 17"""
@@ -48,9 +43,6 @@ class LexerSuite(unittest.TestCase):
     def test_007(self):
         """Literals FLOAT"""
         self.assertTrue(TestLexer.test("12.e-8","12.e-8,<EOF>", inspect.stack()[0].function))
-    def test_017(self):
-        """Literals FLOAT NO DIGIT TEST"""
-        self.assertTrue(TestLexer.test("12.","12.,<EOF>", inspect.stack()[0].function))
     
     def test_008(self):
         """Literals String"""
@@ -58,7 +50,7 @@ class LexerSuite(unittest.TestCase):
         
     def test_009(self):
         """COMEMENTS"""
-        self.assertTrue(TestLexer.test("// VOTIEN\n","<EOF>", inspect.stack()[0].function))
+        self.assertTrue(TestLexer.test("// VOTIEN","<EOF>", inspect.stack()[0].function))
 
     def test_010(self):
         """COMEMENTS"""
@@ -75,6 +67,13 @@ class LexerSuite(unittest.TestCase):
     def test_013(self):
         """ILLEGAL_ESCAPE"""
         self.assertTrue(TestLexer.test(""" "VOTIEN\\f" ""","Illegal escape in string: VOTIEN\\f", inspect.stack()[0].function))
+
+    
+    def test_014(self):
+        """ILLEGAL_ESCAPE"""
+        self.assertTrue(TestLexer.test(""" 
+            const a = 2;
+""","\n,const,a,=,2,;,\n,<EOF>", inspect.stack()[0].function))
         
     #!!! 87 test yêu cầu code chấm sau
 

@@ -25,6 +25,25 @@ options{
 }
 
 program: 'votien'+ EOF;
+// ! ---------------- PASER DEADLINE PASS 13 TEST CASE 23:59 19/1 ----------------------- */
+// program: ((CONST ID ASSIGN expression) | NEWLINE)+ EOF;
+
+// //TODO Literal 6.6 pdf
+// literal:
+// 	INT_LIT
+// 	| FLOAT_LIT
+// 	| STRING_LIT
+// 	| TRUE
+// 	| FALSE
+// 	| array_literal
+// 	| struct_literal;
+
+// // TODO 5.2 Expressions 6 pdf
+// list_expression: expression COMMA list_expression | expression;
+// expression: expression OR expression1 | expression1;
+
+//! ---------------- PASER ----------------------- */
+
 
 // ! ---------------- LEXER DEADLINE PASS 13 TEST CASE 23:59 16/1 ----------------------- */
 
@@ -87,18 +106,29 @@ SEMICOL: ';';
 ID: [a-zA-Z_][a-zA-Z0-9_]*;
 
 //TODO Literals 3.3.5 pdf
-//INT_LIT: [0-9];
-//INTERGER LITERAL
-DEC_INT: '0' | [1-9] [0-9]*;
-BIN_INT: '0' [bB] [01]+ {
-    self.text = str(int(self.text[2:], 2))
-};
-OCT_INT: '0' [oO] [0-7]+{
-    self.text = str(int(self.text[2:], 8))
-};
-HEX_INT: '0' [xX] [0-9a-fA-F]+{
-    self.text = str(int(self.text[2:], 16))
-};
+// INT_LIT: [0-9];
+// //INTERGER LITERAL
+// DEC_INT: '0' | [1-9] [0-9]*;
+// BIN_INT: '0' [bB] [01]+ {
+//     self.text = str(int(self.text[2:], 2))
+// };
+// OCT_INT: '0' [oO] [0-7]+{
+//     self.text = str(int(self.text[2:], 8))
+// };
+// HEX_INT: '0' [xX] [0-9a-fA-F]+{
+//     self.text = str(int(self.text[2:], 16))
+// };
+
+INT_LIT: 
+    DEC_INT | 
+    BIN_INT {self.text = str(int(self.text[2:], 2))} | 
+    OCT_INT {self.text = str(int(self.text[2:], 8))} | 
+    HEX_INT {self.text = str(int(self.text[2:], 16))};
+
+fragment DEC_INT: '0' | [1-9] [0-9]*;
+fragment BIN_INT: '0' [bB] [01]+;
+fragment OCT_INT: '0' [oO] [0-7]+;
+fragment HEX_INT: '0' [xX] [0-9a-fA-F]+;
 
 //FLOAT LITERAL
 FLOAT_LIT: DIGITS '.' (DIGITS)? OPT_EXP;
@@ -117,6 +147,7 @@ fragment ESC_ILLEGAL: '\\' ~[ntr"\\];
 
 //TODO skip 3.1 and 3.2 pdf
 WS: [ \t\f\r\n]+ -> skip; // skip spaces, tabs 
+NEWLINE: '\r'? '\n' -> skip; // skip newline
 //SINGLE LINE COMMENT
 COMMENT: '//' ~[\r\n]* -> skip;
 
