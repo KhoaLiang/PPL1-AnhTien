@@ -70,10 +70,14 @@ class LexerSuite(unittest.TestCase):
 
     
     def test_014(self):
-        """ILLEGAL_ESCAPE"""
+        """NEWLINE"""
         self.assertTrue(TestLexer.test(""" 
             const a = 2;
 ""","\n,const,a,=,2,;,\n,<EOF>", inspect.stack()[0].function))
+    
+    def test_015(self):
+        """NEWLINE"""
+        self.assertTrue(TestLexer.test("const Votien = [5][0]string{1, \"string\"}","const,Votien,=,[,5,],[,0,],string,{,1,string,},<EOF>", inspect.stack()[0].function))
         
     #!!! 87 test yêu cầu code chấm sau
 

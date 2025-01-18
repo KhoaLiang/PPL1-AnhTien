@@ -24,23 +24,43 @@ options{
 	language = Python3;
 }
 
-program: 'votien'+ EOF;
-// ! ---------------- PASER DEADLINE PASS 13 TEST CASE 23:59 19/1 ----------------------- */
-// program: ((CONST ID ASSIGN expression) | NEWLINE)+ EOF;
+//program: 'votien'+ EOF;
+// ! ---------------- PASER DEADLINE PASS 9 TEST CASE 23:59 19/1 ----------------------- */
+program: ((CONST ID ASSIGN expression) | NEWLINE)+ EOF;
 
-// //TODO Literal 6.6 pdf
-// literal:
-// 	INT_LIT
-// 	| FLOAT_LIT
-// 	| STRING_LIT
-// 	| TRUE
-// 	| FALSE
-// 	| array_literal
-// 	| struct_literal;
+//TODO Literal 6.6 pdf
+literal:
+    INT_LIT
+    | FLOAT_LIT
+    | STRING_LIT
+    | TRUE
+    | FALSE
+    | array_literal
+    | struct_literal;
 
-// // TODO 5.2 Expressions 6 pdf
-// list_expression: expression COMMA list_expression | expression;
-// expression: expression OR expression1 | expression1;
+
+
+type_of_array: INT | FLOAT | BOOLEAN | STRING | STRUCT;
+dimension_list: LBRACK INT_LIT RBRACK (LBRACK INT_LIT RBRACK)*;
+type_array: dimension_list type_of_array;
+
+array_literal: LBRACE list_expression RBRACE;
+struct_literal: ID LBRACE list_elements RBRACE;
+
+list_expression: expression (COMMA expression)*;
+
+list_elements: (ID COLON expression) (COMMA ID COLON expression)*;
+
+expression: expression OR expression1 | expression1;
+expression1: expression1 AND expression2 | expression2;
+expression2: expression2 EQUAL expression3 | expression2 DIFF expression3 | expression2 LT expression3 | expression2 LTE expression3 | expression2 RT expression3 | expression2 RTE expression3 | expression3;
+expression3: expression3 ADD expression4 | expression3 SUB expression4 | expression4;
+expression4: expression4 MUL expression5 | expression4 DIV expression5 | expression4 MOD expression5 | expression5;
+expression5: NOT expression5 | SUB expression5 | expression6;
+expression6: LBRACK expression6 RBRACK | expression6 POINTTO expression7 | expression7;
+expression7: LPAREN expression RPAREN | ID | literal | func_call |;
+func_call: ID LPAREN list_expression RPAREN;
+
 
 //! ---------------- PASER ----------------------- */
 
@@ -91,6 +111,7 @@ ASSIGNMUL: '*=';
 ASSIGNDIV: '/=';
 ASSIGNMOD: '%=';
 POINTTO: '.';
+COLON: ':';
 
 //TODO Separators 3.3.4 pdf
 LPAREN: '(';
@@ -146,8 +167,8 @@ fragment ESC_ILLEGAL: '\\' ~[ntr"\\];
 
 
 //TODO skip 3.1 and 3.2 pdf
-WS: [ \t\f\r\n]+ -> skip; // skip spaces, tabs 
-NEWLINE: '\r'? '\n' -> skip; // skip newline
+WS: [ \t\f\r]+ -> skip; // skip spaces, tabs, form feeds, and carriage returns
+NEWLINE: '\r'? '\n';
 //SINGLE LINE COMMENT
 COMMENT: '//' ~[\r\n]* -> skip;
 
