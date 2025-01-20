@@ -62,9 +62,9 @@ function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID 
 method_declared: FUNC LPAREN (ID ID) RPAREN ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore); 
 
 // struct declare
-struct_declared: TYPE ID STRUCT LBRACE ignore* ( prameter SEMICOL? (ignore)*)* RBRACE;
+struct_declared: TYPE ID STRUCT LBRACE ignore* ( prameter SEMICOL (ignore)*)* RBRACE;
 // struct declare
-interface_declared: TYPE ID INTERFACE LBRACE ignore* ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL (ignore)*)* RBRACE;
+interface_declared: TYPE ID INTERFACE LBRACE ignore* ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL? (ignore)*)* RBRACE;
 
 //TODO prameters_list
 prameters_list: prameter COMMA prameters_list | prameter; 

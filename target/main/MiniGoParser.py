@@ -29,11 +29,11 @@ def serializedATN():
         buf.write("\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u00ad\n\16\3\16\3")
         buf.write("\16\3\16\3\16\5\16\u00b3\n\16\3\16\3\16\3\16\3\17\3\17")
         buf.write("\3\17\3\17\3\17\7\17\u00bd\n\17\f\17\16\17\u00c0\13\17")
-        buf.write("\3\17\3\17\5\17\u00c4\n\17\3\17\7\17\u00c7\n\17\f\17\16")
-        buf.write("\17\u00ca\13\17\7\17\u00cc\n\17\f\17\16\17\u00cf\13\17")
-        buf.write("\3\17\3\17\3\20\3\20\3\20\3\20\3\20\7\20\u00d8\n\20\f")
-        buf.write("\20\16\20\u00db\13\20\3\20\3\20\3\20\5\20\u00e0\n\20\3")
-        buf.write("\20\3\20\3\20\3\20\5\20\u00e6\n\20\3\20\3\20\7\20\u00ea")
+        buf.write("\3\17\3\17\3\17\7\17\u00c5\n\17\f\17\16\17\u00c8\13\17")
+        buf.write("\7\17\u00ca\n\17\f\17\16\17\u00cd\13\17\3\17\3\17\3\20")
+        buf.write("\3\20\3\20\3\20\3\20\7\20\u00d6\n\20\f\20\16\20\u00d9")
+        buf.write("\13\20\3\20\3\20\3\20\5\20\u00de\n\20\3\20\3\20\3\20\3")
+        buf.write("\20\5\20\u00e4\n\20\3\20\5\20\u00e7\n\20\3\20\7\20\u00ea")
         buf.write("\n\20\f\20\16\20\u00ed\13\20\7\20\u00ef\n\20\f\20\16\20")
         buf.write("\u00f2\13\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\5\21\u00fb")
         buf.write("\n\21\3\22\3\22\3\22\3\22\5\22\u0101\n\22\3\23\3\23\3")
@@ -60,7 +60,7 @@ def serializedATN():
         buf.write("\2\2\2\6^\3\2\2\2\bb\3\2\2\2\ng\3\2\2\2\fq\3\2\2\2\16")
         buf.write("s\3\2\2\2\20v\3\2\2\2\22y\3\2\2\2\24\u0084\3\2\2\2\26")
         buf.write("\u0089\3\2\2\2\30\u0094\3\2\2\2\32\u00a3\3\2\2\2\34\u00b7")
-        buf.write("\3\2\2\2\36\u00d2\3\2\2\2 \u00fa\3\2\2\2\"\u0100\3\2\2")
+        buf.write("\3\2\2\2\36\u00d0\3\2\2\2 \u00fa\3\2\2\2\"\u0100\3\2\2")
         buf.write("\2$\u0109\3\2\2\2&\u010b\3\2\2\2(\u010f\3\2\2\2*\u0116")
         buf.write("\3\2\2\2,\u011d\3\2\2\2.\u011f\3\2\2\2\60\u012c\3\2\2")
         buf.write("\2\62\u0137\3\2\2\2\64\u0142\3\2\2\2\66\u015c\3\2\2\2")
@@ -107,28 +107,28 @@ def serializedATN():
         buf.write("\2\u00b6\33\3\2\2\2\u00b7\u00b8\7\b\2\2\u00b8\u00b9\7")
         buf.write("\67\2\2\u00b9\u00ba\7\t\2\2\u00ba\u00be\7\61\2\2\u00bb")
         buf.write("\u00bd\5B\"\2\u00bc\u00bb\3\2\2\2\u00bd\u00c0\3\2\2\2")
-        buf.write("\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00cd\3")
-        buf.write("\2\2\2\u00c0\u00be\3\2\2\2\u00c1\u00c3\5\"\22\2\u00c2")
-        buf.write("\u00c4\7\66\2\2\u00c3\u00c2\3\2\2\2\u00c3\u00c4\3\2\2")
-        buf.write("\2\u00c4\u00c8\3\2\2\2\u00c5\u00c7\5B\"\2\u00c6\u00c5")
-        buf.write("\3\2\2\2\u00c7\u00ca\3\2\2\2\u00c8\u00c6\3\2\2\2\u00c8")
-        buf.write("\u00c9\3\2\2\2\u00c9\u00cc\3\2\2\2\u00ca\u00c8\3\2\2\2")
-        buf.write("\u00cb\u00c1\3\2\2\2\u00cc\u00cf\3\2\2\2\u00cd\u00cb\3")
-        buf.write("\2\2\2\u00cd\u00ce\3\2\2\2\u00ce\u00d0\3\2\2\2\u00cf\u00cd")
-        buf.write("\3\2\2\2\u00d0\u00d1\7\62\2\2\u00d1\35\3\2\2\2\u00d2\u00d3")
-        buf.write("\7\b\2\2\u00d3\u00d4\7\67\2\2\u00d4\u00d5\7\n\2\2\u00d5")
-        buf.write("\u00d9\7\61\2\2\u00d6\u00d8\5B\"\2\u00d7\u00d6\3\2\2\2")
-        buf.write("\u00d8\u00db\3\2\2\2\u00d9\u00d7\3\2\2\2\u00d9\u00da\3")
-        buf.write("\2\2\2\u00da\u00f0\3\2\2\2\u00db\u00d9\3\2\2\2\u00dc\u00dd")
-        buf.write("\7\67\2\2\u00dd\u00df\7/\2\2\u00de\u00e0\5 \21\2\u00df")
-        buf.write("\u00de\3\2\2\2\u00df\u00e0\3\2\2\2\u00e0\u00e1\3\2\2\2")
-        buf.write("\u00e1\u00e5\7\60\2\2\u00e2\u00e6\5\f\7\2\u00e3\u00e6")
-        buf.write("\7\67\2\2\u00e4\u00e6\5\24\13\2\u00e5\u00e2\3\2\2\2\u00e5")
-        buf.write("\u00e3\3\2\2\2\u00e5\u00e4\3\2\2\2\u00e5\u00e6\3\2\2\2")
-        buf.write("\u00e6\u00e7\3\2\2\2\u00e7\u00eb\7\66\2\2\u00e8\u00ea")
+        buf.write("\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00cb\3")
+        buf.write("\2\2\2\u00c0\u00be\3\2\2\2\u00c1\u00c2\5\"\22\2\u00c2")
+        buf.write("\u00c6\7\66\2\2\u00c3\u00c5\5B\"\2\u00c4\u00c3\3\2\2\2")
+        buf.write("\u00c5\u00c8\3\2\2\2\u00c6\u00c4\3\2\2\2\u00c6\u00c7\3")
+        buf.write("\2\2\2\u00c7\u00ca\3\2\2\2\u00c8\u00c6\3\2\2\2\u00c9\u00c1")
+        buf.write("\3\2\2\2\u00ca\u00cd\3\2\2\2\u00cb\u00c9\3\2\2\2\u00cb")
+        buf.write("\u00cc\3\2\2\2\u00cc\u00ce\3\2\2\2\u00cd\u00cb\3\2\2\2")
+        buf.write("\u00ce\u00cf\7\62\2\2\u00cf\35\3\2\2\2\u00d0\u00d1\7\b")
+        buf.write("\2\2\u00d1\u00d2\7\67\2\2\u00d2\u00d3\7\n\2\2\u00d3\u00d7")
+        buf.write("\7\61\2\2\u00d4\u00d6\5B\"\2\u00d5\u00d4\3\2\2\2\u00d6")
+        buf.write("\u00d9\3\2\2\2\u00d7\u00d5\3\2\2\2\u00d7\u00d8\3\2\2\2")
+        buf.write("\u00d8\u00f0\3\2\2\2\u00d9\u00d7\3\2\2\2\u00da\u00db\7")
+        buf.write("\67\2\2\u00db\u00dd\7/\2\2\u00dc\u00de\5 \21\2\u00dd\u00dc")
+        buf.write("\3\2\2\2\u00dd\u00de\3\2\2\2\u00de\u00df\3\2\2\2\u00df")
+        buf.write("\u00e3\7\60\2\2\u00e0\u00e4\5\f\7\2\u00e1\u00e4\7\67\2")
+        buf.write("\2\u00e2\u00e4\5\24\13\2\u00e3\u00e0\3\2\2\2\u00e3\u00e1")
+        buf.write("\3\2\2\2\u00e3\u00e2\3\2\2\2\u00e3\u00e4\3\2\2\2\u00e4")
+        buf.write("\u00e6\3\2\2\2\u00e5\u00e7\7\66\2\2\u00e6\u00e5\3\2\2")
+        buf.write("\2\u00e6\u00e7\3\2\2\2\u00e7\u00eb\3\2\2\2\u00e8\u00ea")
         buf.write("\5B\"\2\u00e9\u00e8\3\2\2\2\u00ea\u00ed\3\2\2\2\u00eb")
         buf.write("\u00e9\3\2\2\2\u00eb\u00ec\3\2\2\2\u00ec\u00ef\3\2\2\2")
-        buf.write("\u00ed\u00eb\3\2\2\2\u00ee\u00dc\3\2\2\2\u00ef\u00f2\3")
+        buf.write("\u00ed\u00eb\3\2\2\2\u00ee\u00da\3\2\2\2\u00ef\u00f2\3")
         buf.write("\2\2\2\u00f0\u00ee\3\2\2\2\u00f0\u00f1\3\2\2\2\u00f1\u00f3")
         buf.write("\3\2\2\2\u00f2\u00f0\3\2\2\2\u00f3\u00f4\7\62\2\2\u00f4")
         buf.write("\37\3\2\2\2\u00f5\u00f6\5\"\22\2\u00f6\u00f7\7\65\2\2")
@@ -210,8 +210,8 @@ def serializedATN():
         buf.write("\u01a5\7\60\2\2\u01a5A\3\2\2\2\u01a6\u01a8\7<\2\2\u01a7")
         buf.write("\u01a6\3\2\2\2\u01a8\u01a9\3\2\2\2\u01a9\u01a7\3\2\2\2")
         buf.write("\u01a9\u01aa\3\2\2\2\u01aaC\3\2\2\2-GMOZ^ko\u0081\u0087")
-        buf.write("\u0090\u0098\u009e\u00ac\u00b2\u00be\u00c3\u00c8\u00cd")
-        buf.write("\u00d9\u00df\u00e5\u00eb\u00f0\u00fa\u0100\u0109\u0116")
+        buf.write("\u0090\u0098\u009e\u00ac\u00b2\u00be\u00c6\u00cb\u00d7")
+        buf.write("\u00dd\u00e3\u00e6\u00eb\u00f0\u00fa\u0100\u0109\u0116")
         buf.write("\u011d\u0129\u0134\u013f\u0157\u0159\u0165\u0167\u0176")
         buf.write("\u0178\u0180\u018a\u0193\u0195\u019f\u01a9")
         return buf.getvalue()
@@ -1420,35 +1420,29 @@ class MiniGoParser ( Parser ):
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 203
+            self.state = 201
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MiniGoParser.ID:
                 self.state = 191
                 self.prameter()
-                self.state = 193
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if _la==MiniGoParser.SEMICOL:
-                    self.state = 192
-                    self.match(MiniGoParser.SEMICOL)
-
-
-                self.state = 198
+                self.state = 192
+                self.match(MiniGoParser.SEMICOL)
+                self.state = 196
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==MiniGoParser.NEWLINE:
-                    self.state = 195
+                    self.state = 193
                     self.ignore()
-                    self.state = 200
+                    self.state = 198
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
-                self.state = 205
+                self.state = 203
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 206
+            self.state = 204
             self.match(MiniGoParser.RBRACE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1503,12 +1497,6 @@ class MiniGoParser ( Parser ):
             else:
                 return self.getToken(MiniGoParser.RPAREN, i)
 
-        def SEMICOL(self, i:int=None):
-            if i is None:
-                return self.getTokens(MiniGoParser.SEMICOL)
-            else:
-                return self.getToken(MiniGoParser.SEMICOL, i)
-
         def prameters_list(self, i:int=None):
             if i is None:
                 return self.getTypedRuleContexts(MiniGoParser.Prameters_listContext)
@@ -1530,6 +1518,12 @@ class MiniGoParser ( Parser ):
                 return self.getTypedRuleContext(MiniGoParser.Array_declarationContext,i)
 
 
+        def SEMICOL(self, i:int=None):
+            if i is None:
+                return self.getTokens(MiniGoParser.SEMICOL)
+            else:
+                return self.getToken(MiniGoParser.SEMICOL, i)
+
         def getRuleIndex(self):
             return MiniGoParser.RULE_interface_declared
 
@@ -1549,21 +1543,21 @@ class MiniGoParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 208
+            self.state = 206
             self.match(MiniGoParser.TYPE)
-            self.state = 209
+            self.state = 207
             self.match(MiniGoParser.ID)
-            self.state = 210
+            self.state = 208
             self.match(MiniGoParser.INTERFACE)
-            self.state = 211
+            self.state = 209
             self.match(MiniGoParser.LBRACE)
-            self.state = 215
+            self.state = 213
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MiniGoParser.NEWLINE:
-                self.state = 212
+                self.state = 210
                 self.ignore()
-                self.state = 217
+                self.state = 215
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1571,41 +1565,44 @@ class MiniGoParser ( Parser ):
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MiniGoParser.ID:
-                self.state = 218
+                self.state = 216
                 self.match(MiniGoParser.ID)
-                self.state = 219
+                self.state = 217
                 self.match(MiniGoParser.LPAREN)
-                self.state = 221
+                self.state = 219
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==MiniGoParser.ID:
-                    self.state = 220
+                    self.state = 218
                     self.prameters_list()
 
 
-                self.state = 223
+                self.state = 221
                 self.match(MiniGoParser.RPAREN)
-                self.state = 227
+                self.state = 225
                 self._errHandler.sync(self)
-                token = self._input.LA(1)
-                if token in [MiniGoParser.STRING, MiniGoParser.INT, MiniGoParser.FLOAT, MiniGoParser.BOOLEAN]:
-                    self.state = 224
+                la_ = self._interp.adaptivePredict(self._input,19,self._ctx)
+                if la_ == 1:
+                    self.state = 222
                     self.primitive_type()
-                    pass
-                elif token in [MiniGoParser.ID]:
-                    self.state = 225
+
+                elif la_ == 2:
+                    self.state = 223
                     self.match(MiniGoParser.ID)
-                    pass
-                elif token in [MiniGoParser.LBRACK]:
-                    self.state = 226
+
+                elif la_ == 3:
+                    self.state = 224
                     self.array_declaration()
-                    pass
-                elif token in [MiniGoParser.SEMICOL]:
-                    pass
-                else:
-                    pass
-                self.state = 229
-                self.match(MiniGoParser.SEMICOL)
+
+
+                self.state = 228
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if _la==MiniGoParser.SEMICOL:
+                    self.state = 227
+                    self.match(MiniGoParser.SEMICOL)
+
+
                 self.state = 233
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
