@@ -142,7 +142,7 @@ continue_statement: ignore* CONTINUE SEMICOL ignore*;
 //return_statement
 return_statement: ignore* RETURN (expression)? SEMICOL? ignore*;
 //call_statement
-call_statement: ignore* ID LPAREN list_expression RPAREN (LPAREN LPAREN)? SEMICOL ignore*;
+call_statement: ignore* expression SEMICOL ignore*;
 //inside braces for function, if, for
 lbrace_code_block: LBRACE (statement*) ignore* RBRACE;
 //! ---------------- PASER ----------------------- */
