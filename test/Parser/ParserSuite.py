@@ -136,7 +136,7 @@ class ParserSuite(unittest.TestCase):
         ""","successful", inspect.stack()[0].function))
 
     def test_019(self):
-        """for_statement"""
+        """if_statement"""
         self.assertTrue(TestParser.test("""    
             func VoTien() {
                 if (x > 10) {} 
@@ -151,7 +151,7 @@ class ParserSuite(unittest.TestCase):
         ""","successful", inspect.stack()[0].function))
 
     def test_020(self):
-        """if_statement"""
+        """for_statement"""
         self.assertTrue(TestParser.test("""    
             func VoTien() {
                 for i < 10 {}

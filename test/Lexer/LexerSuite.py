@@ -78,7 +78,20 @@ class LexerSuite(unittest.TestCase):
     def test_015(self):
         """NEWLINE"""
         self.assertTrue(TestLexer.test("const Votien = [5][0]string{1, \"string\"}","const,Votien,=,[,5,],[,0,],string,{,1,string,},<EOF>", inspect.stack()[0].function))
-        
+    def test_019(self):
+        """for_statement"""
+        self.assertTrue(TestLexer.test("""    
+            func VoTien() {
+                if (x > 10) {} 
+                if (x > 10) {
+                  
+                } else if (x == 10) {
+                    var z str;
+                } else {
+                    var z ID;
+                }
+            }
+        ""","successful", inspect.stack()[0].function))
     #!!! 87 test yêu cầu code chấm sau
 
 

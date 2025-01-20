@@ -47,7 +47,7 @@ keyword_var: VAR ( primitive_declaration |  array_declaration | interface_type) 
 
 primitive_type: INT | FLOAT | BOOLEAN | STRING;
 primitive_declaration: ID primitive_type;
-interface_type: ID STR ; //struct or interface
+interface_type: ID (STR | ID) ; //struct or interface representation
 dimension_list: LBRACK INT_LIT RBRACK (LBRACK INT_LIT RBRACK)*;
 array_declaration: dimension_list (primitive_type | ID); // array_declaration  view ID as the type of struct or interface
 
@@ -55,7 +55,7 @@ array_declaration: dimension_list (primitive_type | ID); // array_declaration  v
 constants_declared: CONST ID ASSIGN (expression | array_declaration expression) SEMICOL;
 
 // function declare
-function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
+function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE list_statement* ignore* RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
 
 // method declare
 //(ID1 ID2) --> ID1 represent the name of the struct or interface instance, ID2 represent the name of the struct or interface for example: func (c Calculator) VoTien(x int) int {}
@@ -106,19 +106,45 @@ func_call: ID LPAREN list_expression RPAREN;
 ignore: NEWLINE+;
 
 //TODO Statement 5 and 4 pdf
-// list_statement: statement list_statement | statement;
-// statement:
-// 	(
-// 		declared_statement
-// 		| assign_statement
-// 		| if_statement
-// 		| for_statement
-// 		| break_statement
-// 		| continue_statement
-// 		| call_statement
-// 		| return_statement
-// 	);
+list_statement: statement list_statement | statement;
+statement:
+	(
+		declared_statement
+	    | assign_statement
+		| if_statement
+		| for_statement
+		| break_statement
+		| continue_statement
+		| return_statement
+        | call_statement
+	);
+declared_statement: ignore* (variables_declared | constants_declared) ignore*;
 
+//assign_statement
+assign_statement: ignore* (ID POINTTO? ID? (LBRACK INT_LIT RBRACK)*) assignment_operator expression SEMICOL ignore*;
+assignment_operator: ASSIGN | ASSIGNADD | ASSIGNSUB | ASSIGNMUL | ASSIGNDIV | ASSIGNMOD | ASSIGNNIT;
+
+//if_statement
+if_statement: ignore* IF LPAREN expression RPAREN  (lbrace_code_block) list_elif (ELSE (LBRACE ignore* statement RBRACE))?;
+list_elif: ignore* ELSE IF LPAREN expression RPAREN (LBRACE statement RBRACE) list_elif | ;
+
+//for_statement
+
+for_statement: basic_for | init_condition_update_for | range_for;
+basic_for: ignore* FOR expression ignore* (lbrace_code_block);
+init_condition_update_for: ignore* FOR (ID assignment_operator INT_LIT) SEMICOL (expression) SEMICOL (ID assignment_operator INT_LIT) ignore* (lbrace_code_block);
+range_for: ignore* FOR ID COMMA ID ASSIGNNIT RANGE ID ignore* (lbrace_code_block);
+
+//break_statement
+break_statement: ignore* BREAK SEMICOL ignore*;
+//continue_statement
+continue_statement: ignore* CONTINUE SEMICOL ignore*;
+//return_statement
+return_statement: ignore* RETURN (expression)? SEMICOL? ignore*;
+//call_statement
+call_statement: ignore* ID LPAREN list_expression RPAREN (LPAREN LPAREN)? SEMICOL ignore*;
+//inside braces for function, if, for
+lbrace_code_block: LBRACE (statement*) ignore* RBRACE;
 //! ---------------- PASER ----------------------- */
 
 
