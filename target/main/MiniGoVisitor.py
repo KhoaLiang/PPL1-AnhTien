@@ -69,6 +69,21 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#method_declared.
+    def visitMethod_declared(self, ctx:MiniGoParser.Method_declaredContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#struct_declared.
+    def visitStruct_declared(self, ctx:MiniGoParser.Struct_declaredContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#interface_declared.
+    def visitInterface_declared(self, ctx:MiniGoParser.Interface_declaredContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#prameters_list.
     def visitPrameters_list(self, ctx:MiniGoParser.Prameters_listContext):
         return self.visitChildren(ctx)
@@ -151,6 +166,11 @@ class MiniGoVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MiniGoParser#func_call.
     def visitFunc_call(self, ctx:MiniGoParser.Func_callContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#ignore.
+    def visitIgnore(self, ctx:MiniGoParser.IgnoreContext):
         return self.visitChildren(ctx)
 
 

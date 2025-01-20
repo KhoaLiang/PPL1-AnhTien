@@ -33,10 +33,10 @@ program: NEWLINE* declared (declared | NEWLINE)* EOF;
 declared:
 	variables_declared
 	| constants_declared
-	| function_declared;
-	// | method_declared
-	// | struct_declared
-	// | interface_declared;
+	| function_declared
+	| method_declared
+	| struct_declared
+	| interface_declared;
 
 // Variable declare
 variables_declared: (implicit_var | keyword_var) SEMICOL; 
@@ -56,9 +56,19 @@ constants_declared: CONST ID ASSIGN (expression | array_declaration expression) 
 
 // function declare
 function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
+
+// method declare
+//(ID1 ID2) --> ID1 represent the name of the struct or interface instance, ID2 represent the name of the struct or interface for example: func (c Calculator) VoTien(x int) int {}
+method_declared: FUNC LPAREN (ID ID) RPAREN ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore); 
+
+// struct declare
+struct_declared: TYPE ID STRUCT LBRACE ignore* ( prameter SEMICOL? (ignore)*)* RBRACE;
+// struct declare
+interface_declared: TYPE ID INTERFACE LBRACE ignore* ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL (ignore)*)* RBRACE;
+
 //TODO prameters_list
 prameters_list: prameter COMMA prameters_list | prameter; 
-prameter: primitive_declaration | (ID array_declaration);
+prameter: primitive_declaration | (ID array_declaration) | ID;
 //TODO Literal 6.6 pdf
 literal:
     INT_LIT
@@ -92,7 +102,8 @@ expression6: expression6 (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK
 expression7: LPAREN expression RPAREN | ID  | literal  | func_call;
 func_call: ID LPAREN list_expression RPAREN;
 
-
+// kí tự bỏ qua
+ignore: NEWLINE+;
 
 //TODO Statement 5 and 4 pdf
 // list_statement: statement list_statement | statement;
@@ -218,6 +229,7 @@ fragment ESC_ILLEGAL: '\\' ~[ntr"\\];
 //TODO skip 3.1 and 3.2 pdf
 WS: [ \t\f\r]+ -> skip; // skip spaces, tabs, form feeds, and carriage returns
 NEWLINE: '\r'? '\n';
+
 //SINGLE LINE COMMENT
 COMMENT: '//' ~[\r\n]* -> skip;
 
