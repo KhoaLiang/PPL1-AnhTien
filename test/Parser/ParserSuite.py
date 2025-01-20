@@ -89,7 +89,7 @@ class ParserSuite(unittest.TestCase):
         ""","successful", inspect.stack()[0].function))
 
     def test_015(self):
-        """declared Interface"""
+        """declared struct"""
         self.assertTrue(TestParser.test("""
             type VoTien struct {
                 VoTien string ;

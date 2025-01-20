@@ -26,17 +26,39 @@ options{
 
 //program: 'votien'+ EOF;
 // ! ---------------- PASER DEADLINE PASS 9 TEST CASE 23:59 19/1 ----------------------- */
-program: ((CONST ID ASSIGN expression) | NEWLINE)+ EOF;
+//program: ((CONST ID ASSIGN expression) | NEWLINE)+ EOF;
 //TODO declared
-// program: NEWLINE* declared (declared | NEWLINE)* EOF;
-// declared:
-// 	variables_declared
-// 	| constants_declared
-// 	| function_declared
-// 	| method_declared
-// 	| struct_declared
-// 	| interface_declared;
+program: NEWLINE* declared (declared | NEWLINE)* EOF;
+//TODO Variables 5.1 pdf
+declared:
+	variables_declared
+	| constants_declared
+	| function_declared;
+	// | method_declared
+	// | struct_declared
+	// | interface_declared;
 
+// Variable declare
+variables_declared: (implicit_var | keyword_var) SEMICOL; 
+//TODO implicit_var, keyword_var
+implicit_var: VAR ID ASSIGN expression;
+keyword_var: VAR ( primitive_declaration |  array_declaration | interface_type) (ASSIGN expression)?;
+//type of variable
+
+primitive_type: INT | FLOAT | BOOLEAN | STRING;
+primitive_declaration: ID primitive_type;
+interface_type: ID STR ; //struct or interface
+dimension_list: LBRACK INT_LIT RBRACK (LBRACK INT_LIT RBRACK)*;
+array_declaration: dimension_list (primitive_type | ID); // array_declaration  view ID as the type of struct or interface
+
+//Constant declare
+constants_declared: CONST ID ASSIGN (expression | array_declaration expression) SEMICOL;
+
+// function declare
+function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
+//TODO prameters_list
+prameters_list: prameter COMMA prameters_list | prameter; 
+prameter: primitive_declaration | (ID array_declaration);
 //TODO Literal 6.6 pdf
 literal:
     INT_LIT
@@ -50,9 +72,7 @@ literal:
 array_literal: LBRACE params RBRACE;
 struct_literal: ID LBRACE list_elements RBRACE;
 
-type_of_array: INT | FLOAT | BOOLEAN | STRING | STRUCT;
-dimension_list: LBRACK INT_LIT RBRACK (LBRACK INT_LIT RBRACK)*;
-type_array: dimension_list type_of_array;
+
 
 //TODO Expression 6 pdf
 list_expression: params | ; // list này có thể rỗng
@@ -66,10 +86,10 @@ expression2: expression2 EQUAL expression3 | expression2 DIFF expression3 | expr
 expression3: expression3 ADD expression4 | expression3 SUB expression4 | expression4;
 expression4: expression4 MUL expression5 | expression4 DIV expression5 | expression4 MOD expression5 | expression5;
 expression5: NOT expression5 | SUB expression5 | expression6;
-expression6: ID (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK | expression6 POINTTO expression7 | expression7;
+expression6: expression6 (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK | expression6 POINTTO expression7 | expression7;
 
 // expression6: LBRACK expression6 RBRACK (LBRACK expression6 RBRACK)* type_of_array? | expression6 POINTTO expression7 | expression7;
-expression7: LPAREN expression RPAREN | ID (LBRACK INT_LIT RBRACK)? | literal (LBRACK INT_LIT RBRACK)? | func_call (LBRACK INT_LIT RBRACK)?;
+expression7: LPAREN expression RPAREN | ID  | literal  | func_call;
 func_call: ID LPAREN list_expression RPAREN;
 
 
@@ -115,6 +135,8 @@ NIL: 'nil';
 TRUE: 'true';
 FALSE: 'false';
 
+STR: 'str';
+
 //TODO Operators 3.3.3 pdf
 ADD: '+';
 SUB: '-';
@@ -138,6 +160,7 @@ ASSIGNDIV: '/=';
 ASSIGNMOD: '%=';
 POINTTO: '.';
 COLON: ':';
+ASSIGNNIT: ':='; //(same as <-)
 
 //TODO Separators 3.3.4 pdf
 LPAREN: '(';
