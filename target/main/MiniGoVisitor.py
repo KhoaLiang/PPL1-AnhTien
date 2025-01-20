@@ -49,6 +49,11 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#params.
+    def visitParams(self, ctx:MiniGoParser.ParamsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#list_elements.
     def visitList_elements(self, ctx:MiniGoParser.List_elementsContext):
         return self.visitChildren(ctx)

@@ -27,6 +27,15 @@ options{
 //program: 'votien'+ EOF;
 // ! ---------------- PASER DEADLINE PASS 9 TEST CASE 23:59 19/1 ----------------------- */
 program: ((CONST ID ASSIGN expression) | NEWLINE)+ EOF;
+//TODO declared
+// program: NEWLINE* declared (declared | NEWLINE)* EOF;
+// declared:
+// 	variables_declared
+// 	| constants_declared
+// 	| function_declared
+// 	| method_declared
+// 	| struct_declared
+// 	| interface_declared;
 
 //TODO Literal 6.6 pdf
 literal:
@@ -38,7 +47,7 @@ literal:
     | array_literal
     | struct_literal;
 
-array_literal: LBRACE list_expression RBRACE;
+array_literal: LBRACE params RBRACE;
 struct_literal: ID LBRACE list_elements RBRACE;
 
 type_of_array: INT | FLOAT | BOOLEAN | STRING | STRUCT;
@@ -46,7 +55,8 @@ dimension_list: LBRACK INT_LIT RBRACK (LBRACK INT_LIT RBRACK)*;
 type_array: dimension_list type_of_array;
 
 //TODO Expression 6 pdf
-list_expression: expression (COMMA expression)*;
+list_expression: params | ; // list này có thể rỗng
+params: expression COMMA params | expression; //params thì không -> làm param của index trong mảng
 
 list_elements: (ID COLON expression) (COMMA ID COLON expression)*;
 
@@ -56,13 +66,27 @@ expression2: expression2 EQUAL expression3 | expression2 DIFF expression3 | expr
 expression3: expression3 ADD expression4 | expression3 SUB expression4 | expression4;
 expression4: expression4 MUL expression5 | expression4 DIV expression5 | expression4 MOD expression5 | expression5;
 expression5: NOT expression5 | SUB expression5 | expression6;
-expression6: type_array array_literal | expression6 POINTTO expression7 | expression7;
+expression6: ID (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK | expression6 POINTTO expression7 | expression7;
 
 // expression6: LBRACK expression6 RBRACK (LBRACK expression6 RBRACK)* type_of_array? | expression6 POINTTO expression7 | expression7;
-expression7: LPAREN expression RPAREN | ID (LBRACK INT_LIT RBRACK)? | literal (LBRACK INT_LIT RBRACK)? | func_call (LBRACK INT_LIT RBRACK)? |;
+expression7: LPAREN expression RPAREN | ID (LBRACK INT_LIT RBRACK)? | literal (LBRACK INT_LIT RBRACK)? | func_call (LBRACK INT_LIT RBRACK)?;
 func_call: ID LPAREN list_expression RPAREN;
 
 
+
+//TODO Statement 5 and 4 pdf
+// list_statement: statement list_statement | statement;
+// statement:
+// 	(
+// 		declared_statement
+// 		| assign_statement
+// 		| if_statement
+// 		| for_statement
+// 		| break_statement
+// 		| continue_statement
+// 		| call_statement
+// 		| return_statement
+// 	);
 
 //! ---------------- PASER ----------------------- */
 
