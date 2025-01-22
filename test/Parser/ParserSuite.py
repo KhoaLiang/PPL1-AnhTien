@@ -174,4 +174,33 @@ class ParserSuite(unittest.TestCase):
              }
                                         
         ""","successful", inspect.stack()[0].function))
-       
+    def test_025(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = [true]int{1};                         
+        ""","Error on line 2 col 28: true", inspect.stack()[0].function))
+    def test_028(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = [2]int{1;                         
+        ""","Error on line 2 col 35: ;", inspect.stack()[0].function))
+    def test_030(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = [2]int{};                         
+        ""","Error on line 2 col 34: }", inspect.stack()[0].function))
+    def test_031(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = ID {};                         
+        ""","successful", inspect.stack()[0].function))
+    def test_037(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = a >= 2 <= "string" > a[2][3] < ID{A: 2} >= [2]S{2};                         
+        ""","successful", inspect.stack()[0].function))
+    def test_042(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = a[2, 3];                         
+        ""","Error on line 2 col 30: ,", inspect.stack()[0].function))

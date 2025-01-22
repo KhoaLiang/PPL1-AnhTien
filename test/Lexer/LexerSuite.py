@@ -83,6 +83,11 @@ class LexerSuite(unittest.TestCase):
     def test_058(self):
         """FLOAT_LIT"""
         self.assertTrue(TestLexer.test("00.1e2", "0,0.1e2,<EOF>", inspect.stack()[0].function))
+    def test_042(self):
+        """Expressions"""
+        self.assertTrue(TestLexer.test("""    
+            var z VOTIEN = a[2, 3];                         
+        ""","Error on line 2 col 30: ,", inspect.stack()[0].function))
     #!!! 87 test yêu cầu code chấm sau
 
 
