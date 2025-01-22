@@ -74,24 +74,12 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.test(""" 
             const a = 2;
 ""","\n,const,a,=,2,;,\n,<EOF>", inspect.stack()[0].function))
-    
-    def test_015(self):
-        """NEWLINE"""
-        self.assertTrue(TestLexer.test("const Votien = [5][0]string{1, \"string\"}","const,Votien,=,[,5,],[,0,],string,{,1,string,},<EOF>", inspect.stack()[0].function))
-    def test_019(self):
-        """for_statement"""
-        self.assertTrue(TestLexer.test("""    
-            func VoTien() {
-                if (x > 10) {} 
-                if (x > 10) {
-                  
-                } else if (x == 10) {
-                    var z str;
-                } else {
-                    var z ID;
-                }
-            }
-        ""","successful", inspect.stack()[0].function))
+    def test_030(self):
+        """FLOAT_LIT"""
+        self.assertTrue(TestLexer.test("0452.", "0,452.,<EOF>", inspect.stack()[0].function))
+    def test_050(self):
+        """FLOAT_LIT"""
+        self.assertTrue(TestLexer.test("010.010e-020", "0,10.010e-0,20,<EOF>", inspect.stack()[0].function))
     #!!! 87 test yêu cầu code chấm sau
 
 

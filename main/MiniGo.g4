@@ -238,10 +238,11 @@ fragment OCT_INT: '0' [oO] [0-7]+;
 fragment HEX_INT: '0' [xX] [0-9a-fA-F]+;
 
 //FLOAT LITERAL
-FLOAT_LIT: DIGITS '.' (DIGITS)? OPT_EXP;
-fragment DIGIT: [0-9];
-fragment DIGITS: DIGIT+;
-fragment OPT_EXP: ([Ee] [+-]? DIGITS)?;
+FLOAT_LIT:  DIGIT_NO_ZERO (DIGITS)? '.' (DIGITS)? OPT_EXP;
+fragment DIGIT_NO_ZERO: [1-9];
+fragment DIGIT_WITH_ZERO: [0-9];
+fragment DIGITS: DIGIT_WITH_ZERO+;
+fragment OPT_EXP: ([Ee] [+-]? ('0' | DIGIT_NO_ZERO DIGITS?))?;
 
 //STRING LITERAL
 STRING_LIT: '"' STR_CHAR* '"' {
