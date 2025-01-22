@@ -55,16 +55,16 @@ array_declaration: dimension_list (primitive_type | ID); // array_declaration  v
 constants_declared: CONST ID ASSIGN (expression | array_declaration expression) SEMICOL;
 
 // function declare
-function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE list_statement* ignore* RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
+function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE list_statement* ignore_recursive? RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
 
 // method declare
 //(ID1 ID2) --> ID1 represent the name of the struct or interface instance, ID2 represent the name of the struct or interface for example: func (c Calculator) VoTien(x int) int {}
 method_declared: FUNC LPAREN (ID ID) RPAREN ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore); 
 
 // struct declare
-struct_declared: TYPE ID STRUCT LBRACE ignore* ( prameter SEMICOL (ignore)*)* RBRACE;
+struct_declared: TYPE ID STRUCT LBRACE ignore_recursive? ( prameter SEMICOL ignore_recursive?)* RBRACE;
 // struct declare
-interface_declared: TYPE ID INTERFACE LBRACE ignore* ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL? (ignore)*)* RBRACE;
+interface_declared: TYPE ID INTERFACE LBRACE ignore_recursive? ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL? ignore_recursive?)* RBRACE;
 
 //TODO prameters_list
 prameters_list: prameter COMMA prameters_list | prameter; 
@@ -104,7 +104,7 @@ func_call: ID LPAREN list_expression RPAREN;
 
 // kí tự bỏ qua
 ignore: NEWLINE+;
-
+ignore_recursive: ignore ignore_recursive?;
 //TODO Statement 5 and 4 pdf
 list_statement: statement list_statement | statement;
 statement:
@@ -118,33 +118,33 @@ statement:
 		| return_statement
         | call_statement
 	);
-declared_statement: ignore* (variables_declared | constants_declared) ignore*;
+declared_statement: ignore_recursive? (variables_declared | constants_declared) ignore_recursive?;
 
 //assign_statement
-assign_statement: ignore* (ID POINTTO? ID? (LBRACK INT_LIT RBRACK)*) assignment_operator expression SEMICOL ignore*;
+assign_statement: ignore_recursive? (ID POINTTO? ID? (LBRACK INT_LIT RBRACK)*) assignment_operator expression SEMICOL ignore_recursive?;
 assignment_operator: ASSIGN | ASSIGNADD | ASSIGNSUB | ASSIGNMUL | ASSIGNDIV | ASSIGNMOD | ASSIGNNIT;
 
 //if_statement
-if_statement: ignore* IF LPAREN expression RPAREN  (lbrace_code_block) list_elif (ELSE (LBRACE ignore* statement RBRACE))?;
-list_elif: ignore* ELSE IF LPAREN expression RPAREN (LBRACE statement RBRACE) list_elif | ;
+if_statement: ignore_recursive? IF LPAREN expression RPAREN  (lbrace_code_block) list_elif (ELSE (LBRACE ignore_recursive? statement RBRACE))?;
+list_elif: ignore_recursive? ELSE IF LPAREN expression RPAREN (LBRACE statement RBRACE) list_elif | ;
 
 //for_statement
 
 for_statement: basic_for | init_condition_update_for | range_for;
-basic_for: ignore* FOR expression ignore* (lbrace_code_block);
-init_condition_update_for: ignore* FOR (ID assignment_operator INT_LIT) SEMICOL (expression) SEMICOL (ID assignment_operator INT_LIT) ignore* (lbrace_code_block);
-range_for: ignore* FOR ID COMMA ID ASSIGNNIT RANGE ID ignore* (lbrace_code_block);
+basic_for: ignore_recursive? FOR expression ignore_recursive? (lbrace_code_block);
+init_condition_update_for: ignore_recursive? FOR (ID assignment_operator INT_LIT) SEMICOL (expression) SEMICOL (ID assignment_operator INT_LIT) ignore_recursive? (lbrace_code_block);
+range_for: ignore_recursive? FOR ID COMMA ID ASSIGNNIT RANGE ID ignore_recursive? (lbrace_code_block);
 
 //break_statement
-break_statement: ignore* BREAK SEMICOL ignore*;
+break_statement: ignore_recursive? BREAK SEMICOL ignore_recursive?;
 //continue_statement
-continue_statement: ignore* CONTINUE SEMICOL ignore*;
+continue_statement: ignore_recursive? CONTINUE SEMICOL ignore_recursive?;
 //return_statement
-return_statement: ignore* RETURN (expression)? SEMICOL? ignore*;
+return_statement: ignore_recursive? RETURN (expression)? SEMICOL? ignore_recursive?;
 //call_statement
-call_statement: ignore* expression SEMICOL ignore*;
+call_statement: ignore_recursive? expression SEMICOL ignore_recursive?;
 //inside braces for function, if, for
-lbrace_code_block: LBRACE (statement*) ignore* RBRACE;
+lbrace_code_block: LBRACE (statement*) ignore_recursive? RBRACE;
 //! ---------------- PASER ----------------------- */
 
 

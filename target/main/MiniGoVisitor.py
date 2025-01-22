@@ -174,6 +174,11 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#ignore_recursive.
+    def visitIgnore_recursive(self, ctx:MiniGoParser.Ignore_recursiveContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#list_statement.
     def visitList_statement(self, ctx:MiniGoParser.List_statementContext):
         return self.visitChildren(ctx)
