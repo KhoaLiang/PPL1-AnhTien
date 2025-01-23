@@ -42,7 +42,7 @@ declared:
 variables_declared: (implicit_var | keyword_var) SEMICOL; 
 //TODO implicit_var, keyword_var
 implicit_var: VAR ID ASSIGN expression;
-keyword_var: VAR ( primitive_declaration |  array_declaration | interface_type) (ASSIGN (expression+| (array_literal | ID LBRACE list_expression RBRACE)))?;
+keyword_var: VAR ( primitive_declaration | ID array_declaration | interface_type) (ASSIGN (expression+| (array_literal | ID LBRACE list_expression RBRACE)))?;
 //type of variable
 
 primitive_type: INT | FLOAT | BOOLEAN | STRING;
