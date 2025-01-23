@@ -199,8 +199,18 @@ class ParserSuite(unittest.TestCase):
         self.assertTrue(TestParser.test("""    
             var z VOTIEN = a >= 2 <= "string" > a[2][3] < ID{A: 2} >= [2]S{2};                         
         ""","successful", inspect.stack()[0].function))
+    def test_041(self):
+        """Expressions"""
+        self.assertTrue(TestParser.test("""    
+            var z VOTIEN = a[2][3][a + 2];                         
+        ""","successful", inspect.stack()[0].function))
     def test_042(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
             var z VOTIEN = a[2, 3];                         
         ""","Error on line 2 col 30: ,", inspect.stack()[0].function))
+    def test_058(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            var a [2][3]int = 2 + 3 / 4;
+        ""","successful", inspect.stack()[0].function))

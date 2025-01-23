@@ -42,7 +42,7 @@ declared:
 variables_declared: (implicit_var | keyword_var) SEMICOL; 
 //TODO implicit_var, keyword_var
 implicit_var: VAR ID ASSIGN expression;
-keyword_var: VAR ( primitive_declaration |  array_declaration | interface_type) (ASSIGN (expression| (array_literal | ID LBRACE list_expression RBRACE)))?;
+keyword_var: VAR ( primitive_declaration |  array_declaration | interface_type) (ASSIGN (expression+| (array_literal | ID LBRACE list_expression RBRACE)))?;
 //type of variable
 
 primitive_type: INT | FLOAT | BOOLEAN | STRING;
@@ -100,7 +100,10 @@ expression2: expression2 EQUAL expression3 | expression2 DIFF expression3 | expr
 expression3: expression3 ADD expression4 | expression3 SUB expression4 | expression4;
 expression4: expression4 MUL expression5 | expression4 DIV expression5 | expression4 MOD expression5 | expression5;
 expression5: NOT expression5 | SUB expression5 | expression6;
-expression6: expression6 (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK| expression6 POINTTO expression7 | expression7;
+expression6: expression6 LBRACK expression RBRACK| expression6 POINTTO expression7 | expression7;
+
+//old expression6
+// expression6: expression6 (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK| expression6 POINTTO expression7 | expression7;
 
 // expression6: LBRACK expression6 RBRACK (LBRACK expression6 RBRACK)* type_of_array? | expression6 POINTTO expression7 | expression7;
 expression7: LPAREN expression RPAREN | ID  | literal  | func_call;

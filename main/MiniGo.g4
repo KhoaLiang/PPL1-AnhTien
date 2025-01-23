@@ -100,7 +100,7 @@ expression2: expression2 EQUAL expression3 | expression2 DIFF expression3 | expr
 expression3: expression3 ADD expression4 | expression3 SUB expression4 | expression4;
 expression4: expression4 MUL expression5 | expression4 DIV expression5 | expression4 MOD expression5 | expression5;
 expression5: NOT expression5 | SUB expression5 | expression6;
-expression6: expression6 LBRACK INT_LIT RBRACK| expression6 POINTTO expression7 | expression7;
+expression6: expression6 LBRACK expression RBRACK| expression6 POINTTO expression7 | expression7;
 
 //old expression6
 // expression6: expression6 (LPAREN list_expression RPAREN)? LBRACK (params) RBRACK| expression6 POINTTO expression7 | expression7;
