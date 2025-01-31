@@ -70,7 +70,7 @@ interface_declared: TYPE ID INTERFACE LBRACE ignore_recursive? ( ID LPAREN (pram
 
 //TODO prameters_list
 prameters_list: prameter COMMA prameters_list | prameter; 
-prameter: (primitive_declaration | (ID array_declaration)) | (ID (COMMA ID)* COMMA (primitive_declaration | (ID array_declaration)));
+prameter: (primitive_declaration | (ID array_declaration)) | (ID (COMMA ID)* COMMA (primitive_declaration | ID array_declaration | interface_type));
 //TODO Literal 6.6 pdf
 literal:
     INT_LIT
