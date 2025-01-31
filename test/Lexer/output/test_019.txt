@@ -1,12 +1,7 @@
 
-,func,VoTien,(,),{,
-,if,(,x,>,10,),{,},
-,if,(,x,>,10,),{,
-,
-,},else,if,(,x,==,10,),{,
-,var,z,str,;,
-,},else,{,
-,var,z,ID,;,
-,},
+,type,Calculator,struct,{,
+,value,int,;,
+,a,[,2,],int,;,a,[,2,],ID,;,
+,c,Calculator,
 ,},
 ,<EOF>

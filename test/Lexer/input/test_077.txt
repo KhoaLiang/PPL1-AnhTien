@@ -1,7 +1,1 @@
-    
-            type Calculator struct {
-                                        
-                value int;
-                a [2]int; a [2]ID;
-                c Calculator                    
-            }
+A1_
