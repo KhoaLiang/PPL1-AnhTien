@@ -79,6 +79,11 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#struct_declared_content.
+    def visitStruct_declared_content(self, ctx:MiniGoParser.Struct_declared_contentContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#interface_declared.
     def visitInterface_declared(self, ctx:MiniGoParser.Interface_declaredContext):
         return self.visitChildren(ctx)

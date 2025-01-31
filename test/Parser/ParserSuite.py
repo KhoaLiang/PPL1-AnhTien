@@ -214,3 +214,33 @@ class ParserSuite(unittest.TestCase):
         self.assertTrue(TestParser.test("""    
             var a [2][3]int = 2 + 3 / 4;
         ""","successful", inspect.stack()[0].function))
+    def test_071(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            func Add(a) [2]id {}
+""","Error on line 2 col 22: )", inspect.stack()[0].function))
+    def test_077(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            type Calculator struct {
+                                        
+                value int;
+                a [2]int; a [2]ID;
+                c Calculator                    
+            }
+""","successful", inspect.stack()[0].function))
+    def test_078(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            type Calculator struct {
+                c Calculator
+                c Cal a int;         
+            }
+""","Error on line 4 col 22: a", inspect.stack()[0].function))
+    def test_084(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            type Calculator interface {
+                Add(x int,c,d ID); Add()
+        }
+""","successful", inspect.stack()[0].function))

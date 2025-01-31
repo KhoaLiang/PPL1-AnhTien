@@ -89,6 +89,16 @@ class LexerSuite(unittest.TestCase):
             var z VOTIEN = a[2, 3];                         
         ""","Error on line 2 col 30: ,", inspect.stack()[0].function))
     #!!! 87 test yêu cầu code chấm sau
+    def test_077(self):
+        """Declared"""
+        self.assertTrue(TestLexer.test("""    
+            type Calculator struct {
+                                        
+                value int;
+                a [2]int; a [2]ID;
+                c Calculator                    
+            }
+""",",type,Calculator,struct,{,\n,\n,value,int,;,\n,a,[,2,],int,;,a,[,2,],ID,;,\n,c,Calculator,\n,},\n,<EOF>", inspect.stack()[0].function))
 
 
 

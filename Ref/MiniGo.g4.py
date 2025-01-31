@@ -62,13 +62,15 @@ function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID 
 method_declared: FUNC LPAREN (ID ID) RPAREN ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore); 
 
 // struct declare
-struct_declared: TYPE ID STRUCT LBRACE ignore_recursive? ( prameter SEMICOL ignore_recursive?)* RBRACE;
+struct_declared: TYPE ID STRUCT LBRACE ignore_recursive? struct_declared_content* RBRACE;
+
+struct_declared_content: ignore_recursive? ( prameter SEMICOL ignore_recursive?)| (ID ID ignore_recursive?);
 // struct declare
 interface_declared: TYPE ID INTERFACE LBRACE ignore_recursive? ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL? ignore_recursive?)* RBRACE;
 
 //TODO prameters_list
 prameters_list: prameter COMMA prameters_list | prameter; 
-prameter: primitive_declaration | (ID array_declaration) | ID;
+prameter: (primitive_declaration | (ID array_declaration)) | (ID (COMMA ID)* COMMA (primitive_declaration | (ID array_declaration)));
 //TODO Literal 6.6 pdf
 literal:
     INT_LIT
