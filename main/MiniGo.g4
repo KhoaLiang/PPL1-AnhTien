@@ -39,7 +39,7 @@ declared:
 	| interface_declared;
 
 // Variable declare
-variables_declared: (implicit_var | keyword_var) SEMICOL; 
+variables_declared: (implicit_var | keyword_var) valid_endline; 
 //TODO implicit_var, keyword_var
 implicit_var: VAR ID ASSIGN expression;
 keyword_var: VAR ( primitive_declaration | ID array_declaration | interface_type) (ASSIGN (expression+| (array_literal | ID LBRACE list_expression RBRACE)))?;
@@ -52,7 +52,7 @@ dimension_list: LBRACK INT_LIT RBRACK (LBRACK INT_LIT RBRACK)*;
 array_declaration: dimension_list (primitive_type | ID); // array_declaration  view ID as the type of struct or interface
 
 //Constant declare
-constants_declared: CONST ID ASSIGN (expression | array_declaration expression) SEMICOL;
+constants_declared: CONST ID ASSIGN (expression | array_declaration expression) valid_endline;
 
 // function declare
 function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? LBRACE list_statement* ignore_recursive? RBRACE; //(ignore? return_statement | ignore? block_statement | ignore);
@@ -62,11 +62,11 @@ function_declared: FUNC ID LPAREN (prameters_list)? RPAREN (primitive_type | ID 
 method_declared: FUNC LPAREN (ID ID) RPAREN ID LPAREN (prameters_list_method)? RPAREN (primitive_type | ID | array_declaration)? LBRACE RBRACE; //(ignore? return_statement | ignore? block_statement | ignore); 
 
 // struct declare
-struct_declared: TYPE ID STRUCT LBRACE ignore_recursive? struct_declared_content* RBRACE (NEWLINE | SEMICOL);
+struct_declared: TYPE ID STRUCT LBRACE ignore_recursive? struct_declared_content* RBRACE valid_endline;
 
 struct_declared_content: ignore_recursive? ( prameter SEMICOL ignore_recursive?)| (ID ID ignore);
 // struct declare
-interface_declared: TYPE ID INTERFACE LBRACE ignore_recursive? ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL? ignore_recursive?)* RBRACE (NEWLINE | SEMICOL);
+interface_declared: TYPE ID INTERFACE LBRACE ignore_recursive? ( ID LPAREN (prameters_list)? RPAREN (primitive_type | ID | array_declaration)? SEMICOL? ignore_recursive?)* RBRACE valid_endline;
 
 //TODO prameters_list
 prameters_list: prameter COMMA prameters_list | prameter; 
@@ -75,6 +75,8 @@ prameter: (primitive_declaration | (ID array_declaration)) | (ID (COMMA ID)* COM
 //TODO prameters_list_for_method
 prameters_list_method: prameter_method COMMA prameters_list_method | prameter_method; 
 prameter_method: (primitive_declaration | ID array_declaration | interface_type);
+//valid endline for declaration
+valid_endline: (NEWLINE | SEMICOL);
 //TODO Literal 6.6 pdf
 literal:
     INT_LIT

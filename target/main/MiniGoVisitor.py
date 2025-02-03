@@ -109,6 +109,11 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#valid_endline.
+    def visitValid_endline(self, ctx:MiniGoParser.Valid_endlineContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#literal.
     def visitLiteral(self, ctx:MiniGoParser.LiteralContext):
         return self.visitChildren(ctx)
