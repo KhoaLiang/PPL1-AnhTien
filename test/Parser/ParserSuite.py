@@ -244,3 +244,29 @@ class ParserSuite(unittest.TestCase):
                 Add(x int,c,d ID); Add()
         }
 ""","successful", inspect.stack()[0].function))
+    def test_086(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            type Calculator interface {}
+            type Person struct{};
+""","successful", inspect.stack()[0].function))
+    def test_087(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""    
+            type Calculator interface {};
+""","successful", inspect.stack()[0].function))
+    def test_091(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""
+            func (c c) Add(x, c int) {}
+""","Error on line 2 col 28: ,", inspect.stack()[0].function))
+    def test_095(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("""
+                                        
+            func (c c) Add(x int) {}
+                                        
+            func Add(x int) {} var c int;
+                                        
+            var c int; type Calculator struct{} type Calculator struct{} var c int;
+""","Error on line 7 col 48: type", inspect.stack()[0].function))

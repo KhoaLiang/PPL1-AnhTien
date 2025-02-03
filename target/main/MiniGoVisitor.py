@@ -99,6 +99,16 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#prameters_list_method.
+    def visitPrameters_list_method(self, ctx:MiniGoParser.Prameters_list_methodContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#prameter_method.
+    def visitPrameter_method(self, ctx:MiniGoParser.Prameter_methodContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#literal.
     def visitLiteral(self, ctx:MiniGoParser.LiteralContext):
         return self.visitChildren(ctx)
