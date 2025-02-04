@@ -366,3 +366,20 @@ class ParserSuite(unittest.TestCase):
                                         {
                                         }
                                     }""","successful", inspect.stack()[0].function))
+    def test_124(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        for var i = 0; i < 10; i += 1 {
+                                            // loop body
+                                        }
+                                    }""","successful", inspect.stack()[0].function))
+    # I probly have to separate this test case, implicit var specifically initialized for the for loop
+    def test_126(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        for var i [2]int = 0; foo().a.b(); i[3] := 1 {
+                                            // loop body
+                                        }
+                                    }""","successful", inspect.stack()[0].function))

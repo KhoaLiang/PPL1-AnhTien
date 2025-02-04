@@ -143,14 +143,14 @@ assignment_operator: ASSIGN | ASSIGNADD | ASSIGNSUB | ASSIGNMUL | ASSIGNDIV | AS
 
 member_access: ID (POINTTO ID)? (LBRACK expression RBRACK)* (POINTTO ID (LBRACK expression RBRACK)*)*;
 //if_statement
-if_statement: ignore_recursive? IF LPAREN expression RPAREN ignore_recursive? (lbrace_code_block) list_elif (ELSE (LBRACE ignore_recursive? statement? ignore_recursive? RBRACE))?;
+if_statement: ignore_recursive? IF LPAREN expression RPAREN ignore_recursive? (lbrace_code_block) list_elif (ELSE ignore_recursive? (LBRACE ignore_recursive? statement? ignore_recursive? RBRACE))?;
 list_elif: ignore_recursive? ELSE IF LPAREN expression RPAREN ignore_recursive? (LBRACE ignore_recursive? statement? ignore_recursive? RBRACE) ignore_recursive? list_elif | ;
 
 //for_statement
 
 for_statement: basic_for | init_condition_update_for | range_for;
 basic_for: ignore_recursive? FOR expression ignore_recursive? (lbrace_code_block);
-init_condition_update_for: ignore_recursive? FOR (ID assignment_operator INT_LIT) SEMICOL (expression) SEMICOL (ID assignment_operator INT_LIT) ignore_recursive? (lbrace_code_block);
+init_condition_update_for: ignore_recursive? FOR (implicit_var SEMICOL | assign_statement) (expression) SEMICOL (ID assignment_operator INT_LIT) ignore_recursive? (lbrace_code_block);
 range_for: ignore_recursive? FOR ID COMMA ID ASSIGNNIT RANGE ID ignore_recursive? (lbrace_code_block);
 
 //break_statement
