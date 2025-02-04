@@ -141,10 +141,10 @@ declared_statement: ignore_recursive? (variables_declared | constants_declared) 
 assign_statement: ignore_recursive? member_access assignment_operator expression valid_endline ignore_recursive?;
 assignment_operator: ASSIGN | ASSIGNADD | ASSIGNSUB | ASSIGNMUL | ASSIGNDIV | ASSIGNMOD | ASSIGNNIT;
 
-member_access: ID (POINTTO ID)? (LBRACK INT_LIT RBRACK)* (POINTTO ID (LBRACK INT_LIT RBRACK)*)*;
+member_access: ID (POINTTO ID)? (LBRACK expression RBRACK)* (POINTTO ID (LBRACK expression RBRACK)*)*;
 //if_statement
-if_statement: ignore_recursive? IF LPAREN expression RPAREN  (lbrace_code_block) list_elif (ELSE (LBRACE ignore_recursive? statement RBRACE))?;
-list_elif: ignore_recursive? ELSE IF LPAREN expression RPAREN (LBRACE statement RBRACE) list_elif | ;
+if_statement: ignore_recursive? IF LPAREN expression RPAREN ignore_recursive? (lbrace_code_block) list_elif (ELSE (LBRACE ignore_recursive? statement? ignore_recursive? RBRACE))?;
+list_elif: ignore_recursive? ELSE IF LPAREN expression RPAREN ignore_recursive? (LBRACE ignore_recursive? statement? ignore_recursive? RBRACE) ignore_recursive? list_elif | ;
 
 //for_statement
 

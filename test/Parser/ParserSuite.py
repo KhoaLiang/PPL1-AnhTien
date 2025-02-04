@@ -317,3 +317,52 @@ class ParserSuite(unittest.TestCase):
                                     func Add() {
                                        a[2+3&&2] += foo().b[2];       
                                     }""","successful", inspect.stack()[0].function))
+    def test_114(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        if (x.foo().b[2]) {
+                                            a := 2;
+                                        } else if (a && b) {
+
+                                        } else {
+                                            a := 2;
+                                        }   
+                                    }""","successful", inspect.stack()[0].function))
+    def test_115(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        if (x.foo().b[2]) 
+                                        {
+                                            if (){}
+                                        } 
+                                    }""","Error on line 5 col 48: )", inspect.stack()[0].function))
+    def test_116(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        if (x.foo().b[2]) 
+                                        {
+                                            if (1){} else {}
+
+                                        } else if(2)
+                                        {
+                                        }
+                                    }""","successful", inspect.stack()[0].function))
+    def test_118(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        if (x.foo().b[2]) 
+                                        {
+                                        } else if(1)
+                                        {
+                                        }else if(1)
+                                        {
+                                        }else if(2)
+                                        {
+                                        }else 
+                                        {
+                                        }
+                                    }""","successful", inspect.stack()[0].function))
