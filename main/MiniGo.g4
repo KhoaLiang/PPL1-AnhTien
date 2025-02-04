@@ -160,8 +160,10 @@ continue_statement: ignore_recursive? CONTINUE SEMICOL ignore_recursive?;
 //return_statement
 return_statement: ignore_recursive? RETURN (expression)? SEMICOL? ignore_recursive?;
 //call_statement
-call_statement: ignore_recursive? expression SEMICOL ignore_recursive?;
+call_statement: ignore_recursive? (func_call | method_call) valid_endline ignore_recursive?;
 //inside braces for function, if, for
+//method call
+method_call: ID POINTTO ID LPAREN list_expression RPAREN;
 lbrace_code_block: LBRACE (statement*) ignore_recursive? RBRACE;
 //! ---------------- PASER ----------------------- */
 

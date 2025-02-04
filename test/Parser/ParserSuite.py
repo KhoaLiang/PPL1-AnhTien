@@ -305,3 +305,15 @@ class ParserSuite(unittest.TestCase):
                                     func Add() {
                                         a.foo() += 2;       
                                     }""","Error on line 3 col 48: +=", inspect.stack()[0].function))
+    def test_111(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        2 + 2 += 2;       
+                                    }""","Error on line 3 col 40: 2", inspect.stack()[0].function))
+    def test_113(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                       a[2+3&&2] += foo().b[2];       
+                                    }""","successful", inspect.stack()[0].function))
