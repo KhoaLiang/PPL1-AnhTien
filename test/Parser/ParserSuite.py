@@ -277,3 +277,31 @@ class ParserSuite(unittest.TestCase):
                                         const a = a[2].b
                                         var a = a[2].b; var a = "s";           
                                     }""","successful", inspect.stack()[0].function))
+    def test_107(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        a += 2;
+                                        a -= a[2].b();
+                                        a /= 2
+                                        a *= 2
+                                        a %= 2;       
+                                    }""","successful", inspect.stack()[0].function))
+    def test_108(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        a[2].b := 2;       
+                                    }""","successful", inspect.stack()[0].function))
+    def test_109(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        a.c[2].e[3].k += 2;       
+                                    }""","successful", inspect.stack()[0].function))
+    def test_110(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        a.foo() += 2;       
+                                    }""","Error on line 3 col 48: +=", inspect.stack()[0].function))

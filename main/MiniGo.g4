@@ -39,7 +39,7 @@ declared:
 	| interface_declared;
 
 // Variable declare
-variables_declared: (implicit_var | keyword_var) valid_endline; 
+variables_declared: (implicit_var | keyword_var) SEMICOL; 
 //TODO implicit_var, keyword_var
 implicit_var: VAR ID ASSIGN expression;
 keyword_var: VAR ( primitive_declaration | ID array_declaration | interface_type) (ASSIGN (expression+| (array_literal | ID LBRACE list_expression RBRACE)))?;
@@ -138,9 +138,10 @@ statement:
 declared_statement: ignore_recursive? (variables_declared | constants_declared) ignore_recursive?;
 
 //assign_statement
-assign_statement: ignore_recursive? (ID POINTTO? ID? (LBRACK INT_LIT RBRACK)*) assignment_operator expression SEMICOL ignore_recursive?;
+assign_statement: ignore_recursive? member_access assignment_operator expression valid_endline ignore_recursive?;
 assignment_operator: ASSIGN | ASSIGNADD | ASSIGNSUB | ASSIGNMUL | ASSIGNDIV | ASSIGNMOD | ASSIGNNIT;
 
+member_access: ID (POINTTO ID)? (LBRACK INT_LIT RBRACK)* (POINTTO ID (LBRACK INT_LIT RBRACK)*)*;
 //if_statement
 if_statement: ignore_recursive? IF LPAREN expression RPAREN  (lbrace_code_block) list_elif (ELSE (LBRACE ignore_recursive? statement RBRACE))?;
 list_elif: ignore_recursive? ELSE IF LPAREN expression RPAREN (LBRACE statement RBRACE) list_elif | ;
