@@ -679,7 +679,7 @@ class ParserSuite(unittest.TestCase):
                 return x;
             }
         """, "successful", inspect.stack()[0].function))
-        def test_091(self):
+    def test_091(self):
         """Constant Declaration with Integer"""
         self.assertTrue(TestParser.test("const x = 10;","successful", inspect.stack()[0].function))
 
@@ -705,16 +705,15 @@ class ParserSuite(unittest.TestCase):
 
     def test_097(self):
         """Array Declaration with Initialization"""
-        self.assertTrue(TestParser.test("var arr [3]int = {1, 2, 3};","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("var arr [3]int = [3]int{1, 2, 3};","successful", inspect.stack()[0].function))
 
     def test_098(self):
-        """Constant Array Declaration with Initialization"""
-        self.assertTrue(TestParser.test("const arr [3]int = {1, 2, 3};","successful", inspect.stack()[0].function))
+        """Array Declaration with Initialization"""
+        self.assertTrue(TestParser.test("var arr [3]string = [3]string{1, 2, 3};","successful", inspect.stack()[0].function))
 
     def test_099(self):
         """Array Declaration with Multiple Dimensions"""
         self.assertTrue(TestParser.test("var arr [2][3]int;","successful", inspect.stack()[0].function))
-
     def test_100(self):
-        """Array Declaration with Multiple Dimensions and Initialization"""
-        self.assertTrue(TestParser.test("var arr [2][3]int = {{1, 2, 3}, {4, 5, 6}};","successful", inspect.stack()[0].function))
+        """Array Declaration with Multiple Dimensions"""
+        self.assertTrue(TestParser.test("var arr [2][3]AnhKhoa;","successful", inspect.stack()[0].function))
