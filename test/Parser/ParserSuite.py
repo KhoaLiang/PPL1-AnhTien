@@ -383,3 +383,10 @@ class ParserSuite(unittest.TestCase):
                                             // loop body
                                         }
                                     }""","successful", inspect.stack()[0].function))
+    def test_133(self):
+        """Statement"""
+        self.assertTrue(TestParser.test("""
+                                    func Add() {
+                                        for index, value := range arr[2] {
+                                        }
+                                    }""","successful", inspect.stack()[0].function))

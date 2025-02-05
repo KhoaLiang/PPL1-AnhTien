@@ -150,8 +150,10 @@ list_elif: ignore_recursive? ELSE IF LPAREN expression RPAREN ignore_recursive? 
 
 for_statement: basic_for | init_condition_update_for | range_for;
 basic_for: ignore_recursive? FOR expression ignore_recursive? (lbrace_code_block);
-init_condition_update_for: ignore_recursive? FOR (implicit_var SEMICOL | assign_statement) (expression) SEMICOL (ID assignment_operator INT_LIT) ignore_recursive? (lbrace_code_block);
+init_condition_update_for: ignore_recursive? FOR (implicit_var_for SEMICOL | assign_statement) (expression SEMICOL) (assign_statement_for) ignore_recursive? (lbrace_code_block);
 range_for: ignore_recursive? FOR ID COMMA ID ASSIGNNIT RANGE ID ignore_recursive? (lbrace_code_block);
+implicit_var_for: VAR ID array_declaration? ASSIGN expression;
+assign_statement_for: ignore_recursive? member_access assignment_operator expression ignore_recursive?;
 
 //break_statement
 break_statement: ignore_recursive? BREAK SEMICOL ignore_recursive?;

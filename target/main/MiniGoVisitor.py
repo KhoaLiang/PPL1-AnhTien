@@ -259,6 +259,16 @@ class MiniGoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MiniGoParser#implicit_var_for.
+    def visitImplicit_var_for(self, ctx:MiniGoParser.Implicit_var_forContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniGoParser#assign_statement_for.
+    def visitAssign_statement_for(self, ctx:MiniGoParser.Assign_statement_forContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MiniGoParser#break_statement.
     def visitBreak_statement(self, ctx:MiniGoParser.Break_statementContext):
         return self.visitChildren(ctx)
