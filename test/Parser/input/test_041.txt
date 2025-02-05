@@ -1,3 +1,4 @@
-    
-            var z VOTIEN = a[2][3][a + 2];                         
-        
+
+                                    func Add() {
+                                        a.c[2].e[3].k += 2;       
+                                    }

@@ -1,5 +1,7 @@
-    
-            type Calculator struct {
-                c Calculator
-                c Cal a int;         
+
+            func test() {
+                if (x > 10) {
+                    x = 20;
+                }
             }
+        

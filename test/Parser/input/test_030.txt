@@ -1,3 +1,2 @@
     
-            var z VOTIEN = [2]int{};                         
-        
+            func Add(a) [2]id {}

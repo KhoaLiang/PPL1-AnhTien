@@ -1,0 +1,15 @@
+
+            func test() {
+                var x int = 10;
+                const y = 20;
+                if (x > y) {
+                    x = x - y;
+                } else {
+                    x = x + y;
+                }
+                for var i = 0; i < 10; i = i + 1 {
+                    x = x + i;
+                }
+                return x;
+            }
+        

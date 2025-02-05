@@ -1,0 +1,8 @@
+
+            func test() {
+                var x int = 10;
+                const y = 20;
+                x = x + y;
+                return x;
+            }
+        

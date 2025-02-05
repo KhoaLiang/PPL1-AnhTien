@@ -404,3 +404,278 @@ class ParserSuite(unittest.TestCase):
                                     func Add() {
                                         a[2][3].foo(2 + 3, a {a:2})
                                     }""","successful", inspect.stack()[0].function))
+    def test_054(self):
+        """Literal"""
+        self.assertTrue(TestParser.test("const x = 3.14;","successful", inspect.stack()[0].function))
+
+    def test_055(self):
+        """Literal"""
+        self.assertTrue(TestParser.test("const y = \"Hello, World!\";","successful", inspect.stack()[0].function))
+
+    def test_056(self):
+        """Literal"""
+        self.assertTrue(TestParser.test("const z = true;","successful", inspect.stack()[0].function))
+
+    def test_057(self):
+        """Expression"""
+        self.assertTrue(TestParser.test("const a = 5 + 3 * 2;","successful", inspect.stack()[0].function))
+
+    def test_058(self):
+        """Expression"""
+        self.assertTrue(TestParser.test("const b = (1 + 2) * (3 - 4);","successful", inspect.stack()[0].function))
+
+    def test_059(self):
+        """Expression"""
+        self.assertTrue(TestParser.test("const c = a && b || !c;","successful", inspect.stack()[0].function))
+
+    def test_060(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("var x int = 10;","successful", inspect.stack()[0].function))
+
+    def test_061(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("var y string = \"test\";","successful", inspect.stack()[0].function))
+
+    def test_062(self):
+        """Declared"""
+        self.assertTrue(TestParser.test("var z bool = false;","successful", inspect.stack()[0].function))
+
+    def test_063(self):
+        """Struct"""
+        self.assertTrue(TestParser.test("""
+            type Person struct {
+                name string;
+                age int;
+            }
+        ""","successful", inspect.stack()[0].function))
+
+    def test_064(self):
+        """Struct"""
+        self.assertTrue(TestParser.test("""
+            type Point struct {
+                x, y float;
+            }
+        ""","successful", inspect.stack()[0].function))
+    def test_065(self):
+        """Variable Declaration with Implicit Variable"""
+        self.assertTrue(TestParser.test("var x = 10;","successful", inspect.stack()[0].function))
+
+    def test_066(self):
+        """Variable Declaration with Keyword Variable"""
+        self.assertTrue(TestParser.test("var y int = 20;","successful", inspect.stack()[0].function))
+
+    def test_067(self):
+        """Constant Declaration"""
+        self.assertTrue(TestParser.test("const z = 30;","successful", inspect.stack()[0].function))
+
+    def test_068(self):
+        """Function Declaration with Parameters"""
+        self.assertTrue(TestParser.test("func add(a int, b int) int { return a + b; }","successful", inspect.stack()[0].function))
+
+    def test_069(self):
+        """Function Declaration without Parameters"""
+        self.assertTrue(TestParser.test("func greet() string { return \"Hello\"; }","successful", inspect.stack()[0].function))
+
+    def test_070(self):
+        """Struct Declaration with Fields"""
+        self.assertTrue(TestParser.test("""
+            type Car struct {
+                make string;
+                model string;
+                year int;
+            }
+        ""","successful", inspect.stack()[0].function))
+
+    def test_071(self):
+        """Struct Declaration without Fields"""
+        self.assertTrue(TestParser.test("""type Empty struct {}
+                                        ""","successful", inspect.stack()[0].function))
+
+    def test_072(self):
+        """Interface Declaration with Methods"""
+        self.assertTrue(TestParser.test("""
+            type Shape interface {
+                area() float;
+                perimeter() float;
+            }
+        ""","successful", inspect.stack()[0].function))
+
+    def test_073(self):
+        """Interface Declaration without Methods"""
+        self.assertTrue(TestParser.test("type EmptyInterface interface {};","successful", inspect.stack()[0].function))
+    
+    def test_074(self):
+        """Interface Declaration without Methods"""
+        self.assertTrue(TestParser.test("""type EmptyInterface interface {}
+                                        ""","successful", inspect.stack()[0].function))
+    def test_075(self):
+        """Function with Variable Declaration"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                var x int = 10;
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_076(self):
+        """Function with Constant Declaration"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                const y = 20;
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_077(self):
+        """Function with Assignment Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                x = 30;
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_078(self):
+        """Function with If Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                if (x > 10) {
+                    x = 20;
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_079(self):
+        """Function with For Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                for var i = 0; i < 10; i = i + 1 {
+                    x = x + i;
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_080(self):
+        """Function with Break Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                for var i = 0; i < 10; i = i + 1 {
+                    if (i == 5) {
+                        break;
+                    }
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_081(self):
+        """Function with Continue Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                for var i = 0; i < 10; i = i + 1 {
+                    if (i % 2 == 0) {
+                        continue;
+                    }
+                    x = x + i;
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_082(self):
+        """Function with Return Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                return x;
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_083(self):
+        """Function with Function Call"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                foo();
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_084(self):
+        """Function with Method Call"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                obj.method();
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_085(self):
+        """Function with Nested If Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                if (x > 10) {
+                    if (y < 20) {
+                        x = 30;
+                    }
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_086(self):
+        """Function with Nested For Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                for var i = 0; i < 10; i = i + 1 {
+                    for var j = 0; j < 5; j = j + 1 {
+                        x = x + i + j;
+                    }
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_087(self):
+        """Function with If-Else Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                if (x > 10) {
+                    x = 20;
+                } else {
+                    x = 30;
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_088(self):
+        """Function with If-Else If-Else Statement"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                if (x > 10) {
+                    x = 20;
+                } else if (x < 5) {
+                    x = 30;
+                } else {
+                    x = 40;
+                }
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_089(self):
+        """Function with Multiple Statements"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                var x int = 10;
+                const y = 20;
+                x = x + y;
+                return x;
+            }
+        """, "successful", inspect.stack()[0].function))
+
+    def test_090(self):
+        """Function with Complex Statements"""
+        self.assertTrue(TestParser.test("""
+            func test() {
+                var x int = 10;
+                const y = 20;
+                if (x > y) {
+                    x = x - y;
+                } else {
+                    x = x + y;
+                }
+                for var i = 0; i < 10; i = i + 1 {
+                    x = x + i;
+                }
+                return x;
+            }
+        """, "successful", inspect.stack()[0].function))

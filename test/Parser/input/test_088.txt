@@ -1,0 +1,11 @@
+
+            func test() {
+                if (x > 10) {
+                    x = 20;
+                } else if (x < 5) {
+                    x = 30;
+                } else {
+                    x = 40;
+                }
+            }
+        

@@ -1,3 +1,9 @@
-    
-            type Calculator interface {}
-            type Person struct{};
+
+            func test() {
+                for var i = 0; i < 10; i = i + 1 {
+                    for var j = 0; j < 5; j = j + 1 {
+                        x = x + i + j;
+                    }
+                }
+            }
+        

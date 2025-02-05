@@ -1,2 +1,8 @@
 
-            func (c c) Add(x, c int) {}
+            func thud() {
+                var x int = 10;
+                repeat {
+                    x -= 1;
+                } until x == 0;
+            }
+        

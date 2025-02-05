@@ -1,3 +1,7 @@
-    
-            var z VOTIEN = a >= 2 <= "string" > a[2][3] < ID{A: 2} >= [2]S{2};                         
-        
+
+                                        
+            func (c c) Add(x int) {}
+                                        
+            func Add(x int) {} var c int;
+                                        
+            var c int; type Calculator struct{} type Calculator struct{} var c int;

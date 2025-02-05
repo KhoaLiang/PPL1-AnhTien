@@ -1,0 +1,5 @@
+
+            func test() {
+                const y = 20;
+            }
+        
