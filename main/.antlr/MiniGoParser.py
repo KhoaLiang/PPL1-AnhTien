@@ -292,9 +292,9 @@ def serializedATN():
         749,1,0,0,0,750,751,1,0,0,0,751,754,1,0,0,0,752,755,3,70,35,0,753,
         755,3,112,56,0,754,752,1,0,0,0,754,753,1,0,0,0,755,756,1,0,0,0,756,
         758,3,40,20,0,757,759,3,74,37,0,758,757,1,0,0,0,758,759,1,0,0,0,
-        759,111,1,0,0,0,760,761,5,53,0,0,761,762,5,42,0,0,762,763,5,53,0,
-        0,763,764,5,45,0,0,764,765,3,48,24,0,765,766,5,46,0,0,766,113,1,
-        0,0,0,767,771,5,47,0,0,768,770,3,78,39,0,769,768,1,0,0,0,770,773,
+        759,111,1,0,0,0,760,761,3,54,27,0,761,762,5,42,0,0,762,763,5,53,
+        0,0,763,764,5,45,0,0,764,765,3,48,24,0,765,766,5,46,0,0,766,113,
+        1,0,0,0,767,771,5,47,0,0,768,770,3,78,39,0,769,768,1,0,0,0,770,773,
         1,0,0,0,771,769,1,0,0,0,771,772,1,0,0,0,772,775,1,0,0,0,773,771,
         1,0,0,0,774,776,3,74,37,0,775,774,1,0,0,0,775,776,1,0,0,0,776,777,
         1,0,0,0,777,778,5,48,0,0,778,115,1,0,0,0,103,119,125,127,138,142,
@@ -4927,14 +4927,15 @@ class MiniGoParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self, i:int=None):
-            if i is None:
-                return self.getTokens(MiniGoParser.ID)
-            else:
-                return self.getToken(MiniGoParser.ID, i)
+        def expression(self):
+            return self.getTypedRuleContext(MiniGoParser.ExpressionContext,0)
+
 
         def POINTTO(self):
             return self.getToken(MiniGoParser.POINTTO, 0)
+
+        def ID(self):
+            return self.getToken(MiniGoParser.ID, 0)
 
         def LPAREN(self):
             return self.getToken(MiniGoParser.LPAREN, 0)
@@ -4959,7 +4960,7 @@ class MiniGoParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 760
-            self.match(MiniGoParser.ID)
+            self.expression(0)
             self.state = 761
             self.match(MiniGoParser.POINTTO)
             self.state = 762
