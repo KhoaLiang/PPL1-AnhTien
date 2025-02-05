@@ -1,8 +1,1 @@
-
-            func thud() {
-                var x int = 10;
-                repeat {
-                    x -= 1;
-                } until x == 0;
-            }
-        
+const x = 10;

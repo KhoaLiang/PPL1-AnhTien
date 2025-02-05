@@ -8,5 +8,5 @@
                 SayHello(name string);
                                         
             }
-            type VoTien interface {}                                                                       
+            type LAKhoa interface {}                                                                       
         

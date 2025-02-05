@@ -1,5 +1,5 @@
     
-            func VoTien() {
+            func LAKhoa() {
                 x  := foo() + 3 / 4;
                 x.c[2][4] := 1 + 2;                       
             }                                       

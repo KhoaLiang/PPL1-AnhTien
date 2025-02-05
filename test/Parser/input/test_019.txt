@@ -1,5 +1,5 @@
     
-            func VoTien() {
+            func LAKhoa() {
                 if (x > 10) {} 
                 if (x > 10) {
                   

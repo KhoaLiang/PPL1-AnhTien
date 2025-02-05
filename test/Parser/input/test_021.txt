@@ -1,5 +1,5 @@
     
-            func VoTien() {                           
+            func LAKhoa() {                           
                 for i < 10 {break;}
                 break;
                 continue;

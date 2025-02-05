@@ -14,39 +14,39 @@ import inspect
 class ParserSuite(unittest.TestCase):
     def test_001(self):
         """Literal"""
-        self.assertTrue(TestParser.test("const Votien = 1;","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = 1;","successful", inspect.stack()[0].function))
 
     def test_002(self):
         """Literal"""
-        self.assertTrue(TestParser.test("const Votien = true;","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = true;","successful", inspect.stack()[0].function))
 
     def test_003(self):
         """Literal"""
-        self.assertTrue(TestParser.test("const Votien = [5][0]string{1, \"string\"};","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = [5][0]string{1, \"string\"};","successful", inspect.stack()[0].function))
 
     def test_004(self):
         """Literal"""
-        self.assertTrue(TestParser.test("const Votien = [1.]ID{1, 3};","Error on line 1 col 16: 1.", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = [1.]ID{1, 3};","Error on line 1 col 16: 1.", inspect.stack()[0].function))
 
     def test_005(self):
         """Literal"""
-        self.assertTrue(TestParser.test("const Votien = Person{name: \"Alice\", age: 30};","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = Person{name: \"Alice\", age: 30};","successful", inspect.stack()[0].function))
 
     def test_006(self):
         """expression"""
-        self.assertTrue(TestParser.test("const Votien = 1 || 2 && c + 3 / 2 - -1;","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = 1 || 2 && c + 3 / 2 - -1;","successful", inspect.stack()[0].function))
 
     def test_007(self):
         """expression"""
-        self.assertTrue(TestParser.test("const Votien = 1[2] + foo()[2] + ID[2].b.b;","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = 1[2] + foo()[2] + ID[2].b.b;","successful", inspect.stack()[0].function))
 
     def test_008(self):
         """expression"""
-        self.assertTrue(TestParser.test("const Votien = ca.foo(132) + b.c[2];","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = ca.foo(132) + b.c[2];","successful", inspect.stack()[0].function))
 
     def test_009(self):
         """expression"""
-        self.assertTrue(TestParser.test("const Votien = a.a.foo();","successful", inspect.stack()[0].function))
+        self.assertTrue(TestParser.test("const LAKhoa = a.a.foo();","successful", inspect.stack()[0].function))
 
     def test_010(self):
         """declared variables"""
@@ -59,43 +59,43 @@ class ParserSuite(unittest.TestCase):
     def test_011(self):
         """declared constants"""
         self.assertTrue(TestParser.test("""
-            const VoTien = a.b() + 2;
+            const LAKhoa = a.b() + 2;
         ""","successful", inspect.stack()[0].function))
 
     def test_012(self):
         """declared function"""
         self.assertTrue(TestParser.test("""
-            func VoTien(x int, y int) int {}
-            func VoTien1() [2][3] ID {}         
-            func VoTien2() {}                                       
+            func LAKhoa(x int, y int) int {}
+            func LAKhoa1() [2][3] ID {}         
+            func LAKhoa2() {}                                       
         ""","successful", inspect.stack()[0].function))
 
     def test_013(self):
         """declared method"""
         self.assertTrue(TestParser.test("""
-            func (c Calculator) VoTien(x int) int {}  
-            func (c Calculator) VoTien() ID {}      
-            func (c Calculator) VoTien(x int, y [2]VoTien) {}                                                      
+            func (c Calculator) LAKhoa(x int) int {}  
+            func (c Calculator) LAKhoa() ID {}      
+            func (c Calculator) LAKhoa(x int, y [2]LAKhoa) {}                                                      
         ""","successful", inspect.stack()[0].function))
 
     def test_014(self):
         """declared struct"""
         self.assertTrue(TestParser.test("""
-            type VoTien struct {
-                VoTien string ;
-                VoTien [1][3]VoTien ;                     
+            type LAKhoa struct {
+                LAKhoa string ;
+                LAKhoa [1][3]LAKhoa ;                     
             }
-            type VoTien struct {}                                                                       
+            type LAKhoa struct {}                                                                       
         ""","successful", inspect.stack()[0].function))
 
     def test_015(self):
         """declared struct"""
         self.assertTrue(TestParser.test("""
-            type VoTien struct {
-                VoTien string ;
-                VoTien [1][3]VoTien ;                     
+            type LAKhoa struct {
+                LAKhoa string ;
+                LAKhoa [1][3]LAKhoa ;                     
             }
-            type VoTien struct {}                                                                       
+            type LAKhoa struct {}                                                                       
         ""","successful", inspect.stack()[0].function))
 
     def test_016(self):
@@ -110,18 +110,18 @@ class ParserSuite(unittest.TestCase):
                 SayHello(name string);
                                         
             }
-            type VoTien interface {}                                                                       
+            type LAKhoa interface {}                                                                       
         ""","successful", inspect.stack()[0].function))
 
     def test_017(self):
         """declared_statement"""
         self.assertTrue(TestParser.test("""    
-            func VoTien() {
+            func LAKhoa() {
                 var x int = foo() + 3 / 4;
                 var y = "Hello" / 4;   
                 var z str;
                                         
-                const VoTien = a.b() + 2;
+                const LAKhoa = a.b() + 2;
             }                                       
         ""","successful", inspect.stack()[0].function))
 
@@ -129,7 +129,7 @@ class ParserSuite(unittest.TestCase):
     def test_018(self):
         """assign_statement"""
         self.assertTrue(TestParser.test("""    
-            func VoTien() {
+            func LAKhoa() {
                 x  := foo() + 3 / 4;
                 x.c[2][4] := 1 + 2;                       
             }                                       
@@ -138,7 +138,7 @@ class ParserSuite(unittest.TestCase):
     def test_019(self):
         """if_statement"""
         self.assertTrue(TestParser.test("""    
-            func VoTien() {
+            func LAKhoa() {
                 if (x > 10) {} 
                 if (x > 10) {
                   
@@ -153,7 +153,7 @@ class ParserSuite(unittest.TestCase):
     def test_020(self):
         """for_statement"""
         self.assertTrue(TestParser.test("""    
-            func VoTien() {
+            func LAKhoa() {
                 for i < 10 {}
                 for i := 0; i < 10; i += 1 {}
                 for index, value := range array {}
@@ -164,7 +164,7 @@ class ParserSuite(unittest.TestCase):
     def test_021(self):
         """break and continue, return, Call  statement"""
         self.assertTrue(TestParser.test("""    
-            func VoTien() {                           
+            func LAKhoa() {                           
                 for i < 10 {break;}
                 break;
                 continue;
@@ -177,37 +177,37 @@ class ParserSuite(unittest.TestCase):
     def test_022(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = [true]int{1};                         
+            var z LAKhoa = [true]int{1};                         
         ""","Error on line 2 col 28: true", inspect.stack()[0].function))
     def test_023(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = [2]int{1;                         
+            var z LAKhoa = [2]int{1;                         
         ""","Error on line 2 col 35: ;", inspect.stack()[0].function))
     def test_024(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = [2]int{};                         
+            var z LAKhoa = [2]int{};                         
         ""","Error on line 2 col 34: }", inspect.stack()[0].function))
     def test_025(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = ID {};                         
+            var z LAKhoa = ID {};                         
         ""","successful", inspect.stack()[0].function))
     def test_026(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = a >= 2 <= "string" > a[2][3] < ID{A: 2} >= [2]S{2};                         
+            var z LAKhoa = a >= 2 <= "string" > a[2][3] < ID{A: 2} >= [2]S{2};                         
         ""","successful", inspect.stack()[0].function))
     def test_027(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = a[2][3][a + 2];                         
+            var z LAKhoa = a[2][3][a + 2];                         
         ""","successful", inspect.stack()[0].function))
     def test_028(self):
         """Expressions"""
         self.assertTrue(TestParser.test("""    
-            var z VOTIEN = a[2, 3];                         
+            var z LAKhoa = a[2, 3];                         
         ""","Error on line 2 col 30: ,", inspect.stack()[0].function))
     def test_029(self):
         """Declared"""
@@ -679,3 +679,42 @@ class ParserSuite(unittest.TestCase):
                 return x;
             }
         """, "successful", inspect.stack()[0].function))
+        def test_091(self):
+        """Constant Declaration with Integer"""
+        self.assertTrue(TestParser.test("const x = 10;","successful", inspect.stack()[0].function))
+
+    def test_092(self):
+        """Constant Declaration with Float"""
+        self.assertTrue(TestParser.test("const y = 20.5;","successful", inspect.stack()[0].function))
+
+    def test_093(self):
+        """Constant Declaration with String"""
+        self.assertTrue(TestParser.test("const z = \"Hello\";","successful", inspect.stack()[0].function))
+
+    def test_094(self):
+        """Constant Declaration with Boolean"""
+        self.assertTrue(TestParser.test("const flag = true;","successful", inspect.stack()[0].function))
+
+    def test_095(self):
+        """Array Declaration with Primitive Type"""
+        self.assertTrue(TestParser.test("var arr [5]int;","successful", inspect.stack()[0].function))
+
+    def test_096(self):
+        """Array Declaration with Struct Type"""
+        self.assertTrue(TestParser.test("var arr [5]Person;","successful", inspect.stack()[0].function))
+
+    def test_097(self):
+        """Array Declaration with Initialization"""
+        self.assertTrue(TestParser.test("var arr [3]int = {1, 2, 3};","successful", inspect.stack()[0].function))
+
+    def test_098(self):
+        """Constant Array Declaration with Initialization"""
+        self.assertTrue(TestParser.test("const arr [3]int = {1, 2, 3};","successful", inspect.stack()[0].function))
+
+    def test_099(self):
+        """Array Declaration with Multiple Dimensions"""
+        self.assertTrue(TestParser.test("var arr [2][3]int;","successful", inspect.stack()[0].function))
+
+    def test_100(self):
+        """Array Declaration with Multiple Dimensions and Initialization"""
+        self.assertTrue(TestParser.test("var arr [2][3]int = {{1, 2, 3}, {4, 5, 6}};","successful", inspect.stack()[0].function))

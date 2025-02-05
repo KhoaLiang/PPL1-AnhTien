@@ -1,5 +1,5 @@
 
-            func VoTien(x int, y int) int {}
-            func VoTien1() [2][3] ID {}         
-            func VoTien2() {}                                       
+            func LAKhoa(x int, y int) int {}
+            func LAKhoa1() [2][3] ID {}         
+            func LAKhoa2() {}                                       
         
