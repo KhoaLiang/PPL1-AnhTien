@@ -165,7 +165,7 @@ return_statement: ignore_recursive? RETURN (expression)? valid_endline ignore_re
 call_statement: ignore_recursive? (func_call | method_call) valid_endline ignore_recursive?;
 //inside braces for function, if, for
 //method call
-method_call: expression POINTTO ID LPAREN list_expression RPAREN;
+method_call: member_access POINTTO ID LPAREN list_expression RPAREN;
 lbrace_code_block: LBRACE (statement*) ignore_recursive? RBRACE;
 //! ---------------- PASER ----------------------- */
 

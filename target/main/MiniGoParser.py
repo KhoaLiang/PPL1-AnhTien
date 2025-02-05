@@ -384,25 +384,25 @@ def serializedATN():
         buf.write("\u02f2\3\2\2\2\u02f4\u02f3\3\2\2\2\u02f5\u02f6\3\2\2\2")
         buf.write("\u02f6\u02f8\5*\26\2\u02f7\u02f9\5L\'\2\u02f8\u02f7\3")
         buf.write("\2\2\2\u02f8\u02f9\3\2\2\2\u02f9q\3\2\2\2\u02fa\u02fb")
-        buf.write("\7\67\2\2\u02fb\u02fc\7,\2\2\u02fc\u02fd\7\67\2\2\u02fd")
-        buf.write("\u02fe\7/\2\2\u02fe\u02ff\5\62\32\2\u02ff\u0300\7\60\2")
-        buf.write("\2\u0300s\3\2\2\2\u0301\u0305\7\61\2\2\u0302\u0304\5P")
-        buf.write(")\2\u0303\u0302\3\2\2\2\u0304\u0307\3\2\2\2\u0305\u0303")
-        buf.write("\3\2\2\2\u0305\u0306\3\2\2\2\u0306\u0309\3\2\2\2\u0307")
-        buf.write("\u0305\3\2\2\2\u0308\u030a\5L\'\2\u0309\u0308\3\2\2\2")
-        buf.write("\u0309\u030a\3\2\2\2\u030a\u030b\3\2\2\2\u030b\u030c\7")
-        buf.write("\62\2\2\u030cu\3\2\2\2iy\177\u0081\u008c\u0090\u009e\u00a4")
-        buf.write("\u00ac\u00ae\u00b0\u00c2\u00c8\u00d1\u00d9\u00df\u00e5")
-        buf.write("\u00e9\u00f6\u00fc\u0106\u010b\u0112\u0117\u011c\u0123")
-        buf.write("\u0128\u012e\u0131\u0134\u0138\u0143\u0148\u014f\u0157")
-        buf.write("\u0159\u0160\u0166\u0171\u017f\u0186\u0192\u019d\u01a8")
-        buf.write("\u01c0\u01c2\u01ce\u01d0\u01df\u01e1\u01e9\u01f6\u01f8")
-        buf.write("\u0202\u020c\u0210\u0216\u0220\u0223\u0227\u022a\u022d")
-        buf.write("\u0234\u023b\u0243\u024e\u0253\u0257\u025e\u0264\u0268")
-        buf.write("\u026b\u026e\u0271\u0274\u027c\u0280\u0283\u0286\u028b")
-        buf.write("\u0290\u0295\u0298\u029d\u02a2\u02a9\u02b0\u02b5\u02bf")
-        buf.write("\u02c6\u02cc\u02d2\u02d5\u02da\u02dd\u02e2\u02e5\u02e9")
-        buf.write("\u02ed\u02f0\u02f4\u02f8\u0305\u0309")
+        buf.write("\5X-\2\u02fb\u02fc\7,\2\2\u02fc\u02fd\7\67\2\2\u02fd\u02fe")
+        buf.write("\7/\2\2\u02fe\u02ff\5\62\32\2\u02ff\u0300\7\60\2\2\u0300")
+        buf.write("s\3\2\2\2\u0301\u0305\7\61\2\2\u0302\u0304\5P)\2\u0303")
+        buf.write("\u0302\3\2\2\2\u0304\u0307\3\2\2\2\u0305\u0303\3\2\2\2")
+        buf.write("\u0305\u0306\3\2\2\2\u0306\u0309\3\2\2\2\u0307\u0305\3")
+        buf.write("\2\2\2\u0308\u030a\5L\'\2\u0309\u0308\3\2\2\2\u0309\u030a")
+        buf.write("\3\2\2\2\u030a\u030b\3\2\2\2\u030b\u030c\7\62\2\2\u030c")
+        buf.write("u\3\2\2\2iy\177\u0081\u008c\u0090\u009e\u00a4\u00ac\u00ae")
+        buf.write("\u00b0\u00c2\u00c8\u00d1\u00d9\u00df\u00e5\u00e9\u00f6")
+        buf.write("\u00fc\u0106\u010b\u0112\u0117\u011c\u0123\u0128\u012e")
+        buf.write("\u0131\u0134\u0138\u0143\u0148\u014f\u0157\u0159\u0160")
+        buf.write("\u0166\u0171\u017f\u0186\u0192\u019d\u01a8\u01c0\u01c2")
+        buf.write("\u01ce\u01d0\u01df\u01e1\u01e9\u01f6\u01f8\u0202\u020c")
+        buf.write("\u0210\u0216\u0220\u0223\u0227\u022a\u022d\u0234\u023b")
+        buf.write("\u0243\u024e\u0253\u0257\u025e\u0264\u0268\u026b\u026e")
+        buf.write("\u0271\u0274\u027c\u0280\u0283\u0286\u028b\u0290\u0295")
+        buf.write("\u0298\u029d\u02a2\u02a9\u02b0\u02b5\u02bf\u02c6\u02cc")
+        buf.write("\u02d2\u02d5\u02da\u02dd\u02e2\u02e5\u02e9\u02ed\u02f0")
+        buf.write("\u02f4\u02f8\u0305\u0309")
         return buf.getvalue()
 
 
@@ -4221,29 +4221,30 @@ class MiniGoParser ( Parser ):
 
             self.state = 593
             self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while _la==MiniGoParser.POINTTO:
-                self.state = 580
-                self.match(MiniGoParser.POINTTO)
-                self.state = 581
-                self.match(MiniGoParser.ID)
-                self.state = 588
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                while _la==MiniGoParser.LBRACK:
-                    self.state = 582
-                    self.match(MiniGoParser.LBRACK)
-                    self.state = 583
-                    self.expression(0)
-                    self.state = 584
-                    self.match(MiniGoParser.RBRACK)
-                    self.state = 590
+            _alt = self._interp.adaptivePredict(self._input,65,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    self.state = 580
+                    self.match(MiniGoParser.POINTTO)
+                    self.state = 581
+                    self.match(MiniGoParser.ID)
+                    self.state = 588
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-
+                    while _la==MiniGoParser.LBRACK:
+                        self.state = 582
+                        self.match(MiniGoParser.LBRACK)
+                        self.state = 583
+                        self.expression(0)
+                        self.state = 584
+                        self.match(MiniGoParser.RBRACK)
+                        self.state = 590
+                        self._errHandler.sync(self)
+                        _la = self._input.LA(1)
+             
                 self.state = 595
                 self._errHandler.sync(self)
-                _la = self._input.LA(1)
+                _alt = self._interp.adaptivePredict(self._input,65,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -5362,14 +5363,15 @@ class MiniGoParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self, i:int=None):
-            if i is None:
-                return self.getTokens(MiniGoParser.ID)
-            else:
-                return self.getToken(MiniGoParser.ID, i)
+        def member_access(self):
+            return self.getTypedRuleContext(MiniGoParser.Member_accessContext,0)
+
 
         def POINTTO(self):
             return self.getToken(MiniGoParser.POINTTO, 0)
+
+        def ID(self):
+            return self.getToken(MiniGoParser.ID, 0)
 
         def LPAREN(self):
             return self.getToken(MiniGoParser.LPAREN, 0)
@@ -5400,7 +5402,7 @@ class MiniGoParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 760
-            self.match(MiniGoParser.ID)
+            self.member_access()
             self.state = 761
             self.match(MiniGoParser.POINTTO)
             self.state = 762
